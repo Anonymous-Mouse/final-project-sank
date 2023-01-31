@@ -2,10 +2,10 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
+# Mystery Menagerie
  > Your author list below should include links to all members GitHub (remove existing author).
  
- > Authors: \<[Jeffrey McDaniel](https://github.com/jmcda001)\>
+ > Authors: [Kareem Shehada](https://github.com/karyeet), [Adolfo Plata](https://github.com/Anonymous-Mouse), [Shriya Paturu](https://github.com/shriyapaturu07), [Nicholas Johnson](https://github.com/bricks4nick)
 
  > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
 
@@ -25,6 +25,26 @@
  > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
  > 
  > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
+
+Description:
+- This project is interesting to us because it will be the first time we work with others on an application and for some of us, it will also be our first time using tools like Git and valgrind, which are industry standards and tools we will definitely use throughout our career. 
+- A text based role-playing-game, like the survival game we are proposing, is a perfect project that would allow us to apply these tools over a four week period and create a fun, immersive experience with only text. A survival RPG like this makes the user focus on the story-telling aspect of the game and imagine a decrepit scene without expensive visual effects. The user can create a character and interact with the world around them using a simplified interface to fight, heal, discover, and slowly unfold a storyline hidden by monsters, mystery, and mayhem. 
+- We plan on using C++ to code the project. Additionally, for feature planning we will use Github projects and likely diagrams.net or a similar site for our story/level planning.
+- The input of the project will be through the terminal, it will mostly be a single character to select an option from a prompt. The output will also be through the terminal, it will be information about the player’s stats, items, and location. The terminal will also occasionally print ASCII art to immerse the player into the atmosphere of the game.
+- The project will provide at least one unique story for the player to play through.
+- The player will be able to
+  - Fight enemies
+  - Heal themselves
+  - Use unique items
+  - Search preset locations
+  - make decisions that may impact the ending of the story
+  - Increase/Decrease enemy difficulty at beginning of game
+  - View their location and searched rooms on a map
+  - Solve puzzles that guide players through the map or open unique rewards
+  - Save their progress
+  - Access their inventory
+
+
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to:
  > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
