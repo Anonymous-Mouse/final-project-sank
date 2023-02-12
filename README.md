@@ -3,28 +3,10 @@
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
 # Mystery Menagerie
- > Your author list below should include links to all members GitHub (remove existing author).
  
  > Authors: [Kareem Shehada](https://github.com/karyeet), [Adolfo Plata](https://github.com/Anonymous-Mouse), [Shriya Paturu](https://github.com/shriyapaturu07), [Nicholas Johnson](https://github.com/bricks4nick)
 
- > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
-
- > ## Expectations
- > * The backend of your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
- > * **Each member of the group must actively participate in the Github Project board, writing unit tests, and reviewing commited code.**
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
-
-## Project Description
- > Your project description should summarize the project you are proposing. Be sure to include:
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- > * What will be the input/output of your project?
- > * What are the features that the project provides?
- > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
- > 
- > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
+## Mystery Menagerie Project Description
 
 Description:
 - This project is interesting to us because it will be the first time we work with others on an application and for some of us, it will also be our first time using tools like Git and valgrind, which are industry standards and tools we will definitely use throughout our career. 
@@ -32,32 +14,32 @@ Description:
 - We plan on using C++ to code the project. Additionally, for feature planning we will use Github projects and likely diagrams.net or a similar site for our story/level planning.
 - The input of the project will be through the terminal, it will mostly be a single character to select an option from a prompt. The output will also be through the terminal, it will be information about the player’s stats, items, and location. The terminal will also occasionally print ASCII art to immerse the player into the atmosphere of the game.
 - The project will provide at least one unique story for the player to play through.
-- The player will be able to
-  - Fight enemies
-  - Heal themselves
-  - Use unique items
-  - Search preset locations
-  - make decisions that may impact the ending of the story
-  - Increase/Decrease enemy difficulty at beginning of game
-  - View their location and searched rooms on a map
-  - Solve puzzles that guide players through the map or open unique rewards
-  - Save their progress
-  - Access their inventory
+## The player will be able to...
+- ### Fight Enemies
+  - The player will be able to fight mutated rats, zombies, and giant spiders will roaming around the map.
+  - Each of these enemies will have a unique attack strength, health amount, and status effect that damage the player in different ways.
+- ### Use unique items
+  - The player will be able to use consumables such as healthpacks, steriods, and cures for enemy status effects.
+  - Weapons are given at the beginning of the game and found throughout the map. Each weapon has their own attack strength.
+- ### Search preset locations
+  - The player will be able to search around 3 different floors of an insane asylum for items, story notes, and hidden enemies.
+- ### Make decisions that may impact the ending of the story
+  - The player has to uncover a story filled with monsters and mystery. At the end of the game, the player can choose between two different endings.
+- ### Increase/Decrease enemy difficulty at beginning of game
+  - At the beginning game menu, the player can choose between three difficulty modes that affect the player's strength and health as well as the strength and health of their enemies.
+- ### View their location and searched rooms on a map
+  - The player can view their location and searched rooms on a map.
+- ### Solve puzzles for containers that guide players through the map or open unique rewards
+  - The player can unlock containers with keys only discovered by puzzles.
+- ### Save their progress
+  - The player can save their current location, items, and stats at certain points in the game.
+  - Before a major event in the story, the game will save their progress thus far.
+- ### Access their inventory
+  - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
-
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to:
- > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Break down the "Epics" into smaller actionable user stories (i.e. smaller development tasks). Convert them into issues and assign them to team members. Place these in the `TODO` column.
- >   * These cards should represent roughly 7 days worth of development time for your team. Then, once the sprint is over you should be repeating these steps to plan a new sprint, taking you until your second scrum meeting with the reader in phase III.
- > * Schedule two check-ins using Calendly. You need to pick both time slots during your lab on week 6. Your entire team must be present for both check-ins.
- >   * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
- >   * The second check-in should be scheduled with a reader. During that meeting you will discuss:
- >     * The tasks you are planning for the first sprint
- >     * How work will be divided between the team members
 ## Class Diagram
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
+ 
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
