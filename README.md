@@ -38,6 +38,7 @@ Description:
   - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
 ## Class Diagram
+ ![UML_Diagram drawio](https://user-images.githubusercontent.com/101915406/218344112-b31357d4-c75c-48a8-af9a-0799a5575e27.PNG)
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
  
  
