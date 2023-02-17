@@ -22,7 +22,7 @@ Description:
   - The player will be able to use consumables such as healthpacks, steriods, and cures for enemy status effects.
   - Weapons are given at the beginning of the game and found throughout the map. Each weapon has their own attack strength.
 - ### Search preset locations
-  - The player will be able to search around 3 different floors of an insane asylum for items, story notes, and hidden enemies.
+  - The player will be able to search around 3 different sections for items, story notes, and enemies.
 - ### Make decisions that may impact the ending of the story
   - The player has to uncover a story filled with monsters and mystery. At the end of the game, the player can choose between two different endings.
 - ### Increase/Decrease enemy difficulty at beginning of game
