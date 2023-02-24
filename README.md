@@ -38,7 +38,7 @@ Description:
   - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
 ## Class Diagram
-![UML Diagram drawio2](https://user-images.githubusercontent.com/28524112/221286621-202c345a-e1e0-47c4-b9c0-e6072a9b7c98.png)
+![UML Diagram drawio3-item DIP](https://user-images.githubusercontent.com/28524112/221295569-b72f2c4d-2542-40ce-b0b5-60d3a1e3754c.png)
 This diagram shows a tentative outline of the classes we will use for the project. 
  - A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. 
    - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms. 
@@ -89,4 +89,5 @@ This diagram shows a tentative outline of the classes we will use for the projec
  > Instructions on installing and running your application
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+
 
