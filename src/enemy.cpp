@@ -1,48 +1,35 @@
 #include "../header/enemy.h"
-#include <assert.h>
 
-using Enemies::Enemy;
+Enemy::~Enemy() {}
 
-Enemy::Enemy()
-    : Enemy("Zombie Patient", 100, 10, 25, EnemyType::ZOMBIE)
-{
-
-}
-//string name, int health, int baseDamage, int damageSpread, int escapeChance, EnemyType type = EnemyType::ZOMBIE
-Enemy::Enemy(string name, int health, int baseDamage, int damageSpread, int escapeChance, EnemyType type = EnemyType)
-    : name {name},
-    health {health},
-    baseDamage {baseDamage},
-    damageSpread {damageSpread},
-    EnemyType {type}
-    isDead{false}
-{
-
+string Enemy::getName(){
+    return this->Name;
 }
 
-Enemy::getBaseDamage(){
-    return baseDamage;   
+int Enemy::getBaseDamage(){
+    return this->BaseDamage;   
 }
 
 int Enemy::getHealth(){
-    return health;
+    return this->Health;
 }
 
-bool Enemy::checkIsDead(){
-    return isDead;
+bool Enemy::checkIfDead(){
+    return this->IsDead;
 }
 
 int Enemy::getDamageSpread(){
-    return damageSpread;
+    return this->DamageSpread;
 }
 
 int Enemy::getEscapeChance(){
-    return escapeChance;
+    return this->EscapeChance;
 }
 
-Enemy::takeDamageFromPlayer(int dp){
-    health = health - dp;
-    if(health <= 0){
-        isDead = true;
+void Enemy::setHealth(int dp){
+    this->Health = getHealth() - dp;
+    if(getHealth() <= 0){
+        this->IsDead = false;
+        this->Health = 0;
     }
 }

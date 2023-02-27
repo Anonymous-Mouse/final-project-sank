@@ -3,32 +3,38 @@
 #include <string>
 using namespace std;
 
-namespace Enemies{
 class Enemy{
-public:
-    enum class EnemyType{
-        ZOMBIE = 0, GIANTSPIDER, MUTATEDRAT,
-    };
+private:
+    int DamageSpread;
 protected:
-    string name;
-    int baseDamage;
-    int health;
-    int damageSpread;
-    int escapeChance;
-    bool isDead;
-    EnemyType monstertype;
+    string Name;
+    int BaseDamage;
+    int Health;
+    int EscapeChance;
+    bool IsDead;
 public:
-    Enemy();
-    Enemy(string name, int health, int baseDamage, int damageSpread, int escapeChance, EnemyType type = EnemyType::ZOMBIE);
-    ~Enemy() = default;
+    Enemy(string name, int health, int baseDamage, int damageSpread){
+        this->Name = name;
+        this->Health = health;
+        this->BaseDamage = baseDamage;
+        this->DamageSpread = damageSpread;
+        this->IsDead = false;
+        srand((unsigned) time(NULL));
+
+
+        this->EscapeChance = rand() % 101;
+    }
+    virtual ~Enemy();
+    string getName();
     int getEscapeChance();
     int getBaseDamage();
+    int getDamageSpread();
     int getHealth();
-    bool checkIsDead();
-    void takeDamageFromPlayer(int dp);
+    bool checkIfDead();
+    void setHealth(int dp);
+    virtual void addEffect(Entity enemy) { };
 };
 
 
-};
 
 #endif

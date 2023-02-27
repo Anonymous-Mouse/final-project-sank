@@ -1,6 +1,8 @@
 add_library(simpleLibrary
   enemy.cpp
-  monster.cpp
+  spider.cpp
+  rat.cpp
+  zombie.cpp
 )
 
 find_library(M_LIB m)
