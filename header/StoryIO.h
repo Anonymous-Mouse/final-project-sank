@@ -13,7 +13,7 @@ class StoryIO{
     public:
         const std::string endl = "\n";
         
-        int getInt();
+        int getDigit(int max = 9);
         
         std::string getString();
         

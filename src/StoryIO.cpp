@@ -3,13 +3,13 @@
 #include "../header/StoryIO.h"
 
 
-int StoryIO::getInt(){
+int StoryIO::getDigit(int max){
     std::string in = getString();
-    if(in.length()==1 && isdigit(in.at(0))){
+    if(in.length()==1 && isdigit(in.at(0)) && ((static_cast<int>(in.at(0))-48) <= max)){
         return (static_cast<int>(in.at(0))-48);
     }else{
         *this << "Please enter a valid number!" << this->endl;
-        return getInt();
+        return getDigit(max);
     }
 }
         
