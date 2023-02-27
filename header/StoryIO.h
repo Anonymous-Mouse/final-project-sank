@@ -5,6 +5,11 @@
 #include <string>
 
 class StoryIO{
+
+    private:
+        std::istream* input;
+        std::ostream* output;
+
     public:
         const std::string endl = "\n";
         
@@ -14,10 +19,12 @@ class StoryIO{
         
         template <typename T>
 		StoryIO operator<<(T in){
-    		std::cout << in;
+    		*(this->output) << in;
     		return *this;
 		}
-    
+
+        StoryIO(std::istream& input, std::ostream& output);
+
 };
 
 #endif
