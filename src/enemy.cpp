@@ -26,10 +26,10 @@ int Enemy::getEscapeChance(){
     return this->EscapeChance;
 }
 
-void Enemy::setHealth(int dp){
+void Enemy::damageEntity(int dp){
     this->Health = getHealth() - dp;
     if(getHealth() <= 0){
-        this->IsDead = false;
+        this->IsDead = true;
         this->Health = 0;
     }
 }

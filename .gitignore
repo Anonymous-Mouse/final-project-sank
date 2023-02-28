@@ -1,7 +1,6 @@
-*.o
-lib/
-lib
-CMakeFiles
-Makefile
-CMakeCache.txt
 cmake_install.cmake
+CMakeCache.txt
+Makefile
+CMakeFiles/*
+bin/*
+lib/*

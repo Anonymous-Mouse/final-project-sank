@@ -5,7 +5,8 @@
 class Zombie: public Enemy{
 public:
     Zombie(string name, int health, int baseDamage, int damageSpread) : Enemy(name, health, baseDamage, damageSpread){}
-    void addEffect(Entity enemy) override {}
+    void addEffect(StatusEffect effect, Entity object) override {}
+
 };
 
 #endif

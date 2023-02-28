@@ -3,6 +3,13 @@
 #include <string>
 using namespace std;
 
+enum StatusEffect{
+    ReduceMaxHealth,
+    Heal,
+    ReduceBaseDamage,
+    Slow
+};
+
 class Enemy{
 private:
     int DamageSpread;
@@ -31,8 +38,8 @@ public:
     int getDamageSpread();
     int getHealth();
     bool checkIfDead();
-    void setHealth(int dp);
-    virtual void addEffect(Entity enemy) { };
+    void damageEntity(int dp);
+    virtual void addEffect(StatusEffect effect) {};
 };
 
 
