@@ -1,12 +1,12 @@
 #include "LockedContainer.h"
 #include <string>
 
-LockedContainer(string password) {
+LockedContainer::LockedContainer(string password) {
     this->password = password;
     this->locked = true;
 }
 
-bool unlock(string password) {
+bool LockedContainer::unlock(string password) {
     if (locked && password == this->password) {
         locked = false;
         return true;
@@ -16,6 +16,6 @@ bool unlock(string password) {
     }
 }
 
-bool isLocked() {
+bool LockedContainer::isLocked() {
     return locked;
 }

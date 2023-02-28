@@ -9,6 +9,8 @@ class Container {
 public:
     Container(vector<Item> contents, string name);
     Container(vector<Item> contents, string name, string key);
+    bool isLocked();
+    int getContentsAmount();
     void getItemIndex(int);
     void removeItemIndex(int);
     void getName(int);

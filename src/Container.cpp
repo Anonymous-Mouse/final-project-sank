@@ -5,24 +5,24 @@
 
 using namespace std;
 
-Container(vector<Item> contents, string name) {
+Container::Container(vector<Item> contents, string name) {
     this->contents = contents;
     this->name = name;
     this->locked = false;
 }
 
-Container(vector<Item> contents, string name, string key) {
+Container::Container(vector<Item> contents, string name, string key) {
     this->contents = contents;
     this->name = name;
     this->key = key; 
     this->locked = true;
 }
 
-bool isLocked() {
+bool Container::isLocked() {
     return locked;
 }
 
-bool unlock(string key) {
+bool Container::unlock(string key) {
     if (locked && key == this->key) {
         locked = false;
         return true;
@@ -32,18 +32,18 @@ bool unlock(string key) {
     }
 }
 
-int getContentsAmount() {
+int Container::getContentsAmount() {
     return contents.size();
 }
 
-Item getItemIndex(int index) {
+Item Container::getItemIndex(int index) {
     return contents[index];
 }
 
-void removeItemIndex(int index) {
+void Container::removeItemIndex(int index) {
     contents.erase(contents.begin() + index);
 }
 
-string getName() {
+string Container::getName() {
     return name;
 }
