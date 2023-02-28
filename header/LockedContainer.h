@@ -7,7 +7,7 @@ using namespace std;
 class LockedContainer {
 public:
     LockedContainer(string password);
-    void unlock();
+    bool unlock(string password);
 
 private:
     bool locked;

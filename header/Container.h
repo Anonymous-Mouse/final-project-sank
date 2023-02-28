@@ -1,19 +1,21 @@
 #define CONTAINER_H_INCLUDED
 #ifndef CONTAINER_H_INCLUDED
 #include <string>
+#include <array>
 
 using namespace std;
 
 class Container {
 public:
-    container(Item contents[], string name, int contentsAmmount);
+    Container(vector<Item> contents, string name);
+    Container(vector<Item> contents, string name, string key);
     void getItemIndex(int);
     void removeItemIndex(int);
     void getName(int);
 
 private:
-    Item contents[];
+    vector<Item> contents;
     string name;
-    int contentsAmount;
+    string key;
 };
 #endif
