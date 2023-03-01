@@ -1,6 +1,8 @@
 #include "LockedContainer.h"
 #include <string>
 
+using namespace std;
+
 LockedContainer::LockedContainer(string password) {
     this->password = password;
     this->locked = true;
