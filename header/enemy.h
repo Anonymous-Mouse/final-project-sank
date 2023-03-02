@@ -1,6 +1,8 @@
 #ifndef ENEMY_H
 #define ENEMY_H
+#include "../header/entity.h"
 #include <string>
+
 using namespace std;
 
 enum StatusEffect{
@@ -10,17 +12,14 @@ enum StatusEffect{
     Slow
 };
 
-class Enemy{
+class Enemy: public Entity{
 private:
     int DamageSpread;
 protected:
-    string Name;
     int BaseDamage;
-    int Health;
     int EscapeChance;
-    bool IsDead;
 public:
-    Enemy(string name, int health, int baseDamage, int damageSpread){
+    Enemy(int baseDamage, int damageSpread) : Entity(Name, Health){
         this->Name = name;
         this->Health = health;
         this->BaseDamage = baseDamage;
@@ -32,12 +31,9 @@ public:
         this->EscapeChance = rand() % 101;
     }
     virtual ~Enemy();
-    string getName();
     int getEscapeChance();
     int getBaseDamage();
     int getDamageSpread();
-    int getHealth();
-    bool checkIfDead();
     void damageEntity(int dp);
     virtual void addEffect(StatusEffect effect) {};
 };

@@ -5,7 +5,12 @@
 class Rat: public Enemy{
 public:
     Rat(string name, int health, int baseDamage, int damageSpread) : Enemy(name, health, baseDamage, damageSpread){}
-    void addEffect(StatusEffect effect, Entity object) override {}
+    void addEffect(StatusEffect effect) override {
+        for(int i =0; i < Effects.)
+        this->getEffects.pushback(effect);
+
+
+    }
 
 };
 #endif
