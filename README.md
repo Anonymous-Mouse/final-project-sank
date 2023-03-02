@@ -37,8 +37,8 @@ Description:
 - ### Access their inventory
   - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
-## Class Diagram
-![UML Diagram drawio story interfacepng](https://user-images.githubusercontent.com/28524112/222238415-ee72b303-01a8-49ff-8c2b-e9fc864d6bed.png)
+## Class Diagram!
+![UML Diagram drawio fixes](https://user-images.githubusercontent.com/28524112/222378679-1b690d67-3fba-42d0-b9f1-576d40c3c7d8.png)
 This diagram shows a tentative outline of the classes we will use for the project. 
  - A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. 
    - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms.
