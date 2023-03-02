@@ -23,6 +23,33 @@ TEST(OutputFunc, outputBasic){
 	// the output in console should be "Test Output" and a newline.
 }
 
+TEST(OutputFunc, twoStringOutputs){
+	std::ostringstream ostr;
+	std::istringstream istr;
+	StoryIO io(istr, ostr);
+	io << "Test1 " << "Test2" << io.endl;
+	EXPECT_EQ(ostr.str(), "Test1 Test2\n");
+	// the output in console should be "Test Output" and a newline.
+}
+
+TEST(OutputFunc, oneStringOneNumber){
+	std::ostringstream ostr;
+	std::istringstream istr;
+	StoryIO io(istr, ostr);
+	io << "Test1 " << 17 << io.endl;
+	EXPECT_EQ(ostr.str(), "Test1 17\n");
+	// the output in console should be "Test Output" and a newline.
+}
+
+TEST(OutputFunc, twoNumbers){
+	std::ostringstream ostr;
+	std::istringstream istr;
+	StoryIO io(istr, ostr);
+	io << 16 << 17 << io.endl;
+	EXPECT_EQ(ostr.str(), "1617\n");
+	// the output in console should be "Test Output" and a newline.
+}
+
 TEST(InputFuncs, getString){
 	std::string input("word\n");
 	std::ostringstream ostr;
