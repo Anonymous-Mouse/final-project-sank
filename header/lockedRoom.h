@@ -1,3 +1,6 @@
+#ifndef LOCKEDROOM_H
+#define LOCKEDROOM_H
+
 #include "./Room.h"
 #include <string>
 
@@ -13,3 +16,5 @@ class lockedRoom: public Room{
         lockedRoom(std::string keyName);
 
 }
+
+#endif
