@@ -2,7 +2,7 @@
 #define LOCKEDROOM_H
 
 #include "./Room.h"
-#include "./Entity.h"
+#include "./Enemy.h"
 #include "./Container.h"
 #include <string>
 
@@ -12,12 +12,12 @@ class lockedRoom: public Room{
         std::string keyName;
         bool locked;
 
-    private:
+    public:
         bool unlock(std::string);
+        bool isLocked();
+        lockedRoom(std::string keyName, std::string roomName, Enemy* enemy = nullptr, int EnemySpawnChance = 0, Container* container = nullptr);
+        //lockedRoom(std::string keyName, std::string roomName);
 
-        lockedRoom(std::string keyName, Enemy*, int, Container*);
-        lockedRoom(std::string keyName);
-
-}
+};
 
 #endif

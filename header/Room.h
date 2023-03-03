@@ -7,9 +7,9 @@
 
 class Room{
     private:
-    Container* container;
-    string Name;
-    Enemy* enemy;
+    Container* container = nullptr;
+    std::string Name;
+    Enemy* enemy = nullptr;
     int EnemySpawnChance;
     bool enemyAlive;
     bool chestExists;
@@ -19,14 +19,14 @@ class Room{
     std::string getName();
     bool isThereEnemy();
     bool isThereChest();
-    Enemy getEnemy();
-    Container getChest();
+    Enemy& getEnemy();
+    Container& getChest();
 
-    Room(Enemy enemy* = nullptr, int EnemySpawnChance, Container container* = nullptr);
-    Room();
+    Room(std::string Name, Enemy* enemy = nullptr, int EnemySpawnChance = 0, Container* container = nullptr);
+    // Room(std::string Name);
 
     ~Room();
     
-}
+};
 
 #endif

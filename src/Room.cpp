@@ -14,7 +14,7 @@ bool Room::rollEnemySpawn(){
     }
 }
 
-bool Room::getName(){
+std::string Room::getName(){
     return this->Name;
 }
 
@@ -27,39 +27,49 @@ bool Room::isThereChest(){
 }
 
 Enemy& Room::getEnemy(){
-    return this->enemy;
+    return *(this->enemy);
 }
 
 Container& Room::getChest(){
-    return this->container;
+    return *(this->container);
 }
 
 
-Room::Room(Enemy enemy*, int EnemySpawnChance , Container container*){
-    if(enemy != null){
+/*Room::Room(std::string Name){
+    this->EnemySpawnChance = 0;
+    this->enemyAlive = false;
+    this->chestExists = false;
+    this->Name = Name;
+}*/
+
+Room::Room(std::string Name, Enemy* enemy, int EnemySpawnChance , Container* container){
+    this->Name = Name;
+    if(enemy != nullptr){
         this->enemy = enemy;
         this->enemyAlive = true;
         this->EnemySpawnChance = EnemySpawnChance;
     }else{
+        this->enemy = nullptr;
         this->enemyAlive = false;
         this->EnemySpawnChance = 0;
     }
 
-    if(container != null){
+    if(container != nullptr){
         this->container = container;
         this->chestExists = true;
     }else{
+        this->container = nullptr;
         this->chestExists = false;
     }
 }
 
-Room::Room(){
-    this->EnemySpawnChance = 0;
-    this->enemyAlive = false;
-    this->chestExists = false;
-}
+
 
 Room::~Room(){
-    delete this->enemy;
-    delete this->container;
+    if(this->enemy != nullptr){
+        delete this->enemy;
+    }
+    if(this->container != nullptr){
+        delete this->container;
+    }  
 }
