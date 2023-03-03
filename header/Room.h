@@ -22,8 +22,10 @@ class Room{
     Enemy getEnemy();
     Container getChest();
 
-    Room(Enemy enemy, int EnemySpawnChance, Container container);
-    Room(Enemy enemy, int EnemySpawnChance);
+    Room(Enemy enemy* = nullptr, int EnemySpawnChance, Container container* = nullptr);
+    Room();
+
+    ~Room();
     
 }
 
