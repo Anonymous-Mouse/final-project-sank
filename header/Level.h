@@ -1,9 +1,10 @@
-#ifndef LEVEL_H_INCLUDED
-#define LEVEL_H_INCLUDED
-
-#include "Rooms.h"
+#include "../header/Rooms.h"
+#include "..header/Container.h"
+#include "../header/Enemy.h"
 #include <string>
 #include <array>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
