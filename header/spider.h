@@ -5,8 +5,8 @@
 
 class Spider: public Enemy{
 public:
-    Spider(string name, int health, int baseDamage, int damageSpread) : Enemy(name, health, baseDamage, damageSpread){}
-    void addEffect(StatusEffect effect, Entity object) override {}
+    Spider(string name, int health, int baseDamage, int damageSpread, int difficultyMultiplier) : Enemy(name, health, baseDamage, damageSpread, difficultyMultiplier){}
+
 };
 
 #endif

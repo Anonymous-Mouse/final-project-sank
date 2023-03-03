@@ -1,43 +1,35 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include "../header/entity.h"
+#include "../header/player.h"
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
-enum StatusEffect{
-    ReduceMaxHealth,
-    Heal,
-    ReduceBaseDamage,
-    Slow
-};
 
 class Enemy: public Entity{
-private:
-    int DamageSpread;
 protected:
     int BaseDamage;
     int EscapeChance;
+    int DamageSpread;
+    int difficultyMultiplier;
 public:
-    Enemy(int baseDamage, int damageSpread) : Entity(Name, Health){
-        this->Name = name;
-        this->Health = health;
-        this->BaseDamage = baseDamage;
+    Enemy(string name, int health, int baseDamage, int damageSpread, int difficultyMultiplier) : Entity(name, health){
+        srand(time(0));
+        this->EscapeChance = rand() % 100;
+        this->difficultyMultiplier = difficultyMultiplier;
+        this->Health = health + ((health*difficultyMultiplier)/20);
+        this->BaseDamage = baseDamage * difficultyMultiplier;
         this->DamageSpread = damageSpread;
-        this->IsDead = false;
-        srand((unsigned) time(NULL));
-
-
-        this->EscapeChance = rand() % 101;
     }
     virtual ~Enemy();
     int getEscapeChance();
     int getBaseDamage();
     int getDamageSpread();
-    void damageEntity(int dp);
-    virtual void addEffect(StatusEffect effect) {};
+    void damageEntity(/*Player playerTarget*/);
+    virtual bool addEffect(StatusEffect effect);
+    virtual bool removeEffect(StatusEffect effect);
 };
-
-
 
 #endif
