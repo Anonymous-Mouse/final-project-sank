@@ -1,20 +1,15 @@
 #include "Container.h"
 #include "LockedContainer.h"
+#include "LockedRoom.h"
 #include <string>
 #include <vector>
 
 using namespace std;
 
-Container::Container(vector<Item> contents, string name) {
+Container::Container(vector<Item> contents, string name, int maxItems) {
     this->contents = contents;
-    this->name = name;
-    this->locked = false;
-}
-
-Container::Container(vector<Item> contents, string name, string key) {
-    this->contents = contents;
-    this->name = name;
-    this->key = key; 
+    this->name = name; 
+    this->maxItems = maxItems;
     this->locked = true;
 }
 

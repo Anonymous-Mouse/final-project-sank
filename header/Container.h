@@ -7,8 +7,7 @@ using namespace std;
 
 class Container {
 public:
-    Container(vector<Item> contents, string name);
-    Container(vector<Item> contents, string name, string key);
+    Container(vector<Item> contents, string name, int maxItems);
     bool isLocked();
     int getContentsAmount();
     void getItemIndex(int);
@@ -18,6 +17,6 @@ public:
 private:
     vector<Item> contents;
     string name;
-    string key;
+    int maxItems;
 };
 #endif
