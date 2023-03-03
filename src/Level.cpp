@@ -19,7 +19,7 @@ Level::Level(int difficulty, Rooms Room[][]) {
     this->difficulty = difficulty;
     this->Room = Room;
     this->exploredRooms = new Rooom*[mapSize[0]];
-    for(int i = 0; i < mapSize[0]; i++){
+    for(int i = 0; i < mapSize[0]; i++) {
         this->exploredRooms[i] = new Room[mapSize[1]];
     }
 }
@@ -55,8 +55,8 @@ string Level::generateMap(int playerX, int playerY) {
             if (i == playerX && j = playerY) {
                 map += "P ";
             }
-            else if (isTherRoom(i, j)) {
-                if (this->exploredRooms[i][j],getName()) {
+            else if (isThereRoom(i, j)) {
+                if (this->exploredRooms[i][j].getName()) {
                     map += "X ";
                 }
                 else {
