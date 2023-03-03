@@ -38,10 +38,11 @@ Description:
   - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
 ## Class Diagram
-![UML Diagram drawio3-item DIP](https://user-images.githubusercontent.com/28524112/221295569-b72f2c4d-2542-40ce-b0b5-60d3a1e3754c.png)
+![UML Diagram drawio story interfacepng](https://user-images.githubusercontent.com/28524112/222238415-ee72b303-01a8-49ff-8c2b-e9fc864d6bed.png)
 This diagram shows a tentative outline of the classes we will use for the project. 
  - A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. 
-   - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms. 
+   - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms.
+   - The story class will make use of StoryIO, an abstraction for input/output which provides input validation and can take any istream or ostream as parameters. (cin, cout, isstream, osstream)
  - The level will hold all the Rooms and keep track of the rooms the player has been in as well as the difficulty of the story. 
  - A room can have an entity, container, or both. 
    - The story should not allow the container to be opened or the player to move to different room unless the enemy is dead or is not there. 
