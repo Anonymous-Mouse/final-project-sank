@@ -37,9 +37,29 @@ Description:
 - ### Access their inventory
   - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
-## Class Diagram
-![UML Diagram drawio 2-22-23](https://user-images.githubusercontent.com/28524112/220846269-4911dc6f-45c5-4d6e-9e45-9add6873961f.png)
-This diagram shows a tentative outline of the classes we will use for the project. A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms. The level will hold all the Rooms and keep track of the rooms the player has been in as well as the difficulty of the story. A room can have an entity, container, or both. The story should not allow the container to be opened or the player to move to different room unless the enemy is dead or is not there. A locked room cannot be entered without the correct key in the inventory, once entered the key is consumed and the lockedroom is marked unlocked. Rooms can have a chance to spawn an enemy when first explored (to add randomness). The room map is a 2d array, to represent x and y coordinates. Weapons and enemies should be defined per story, Giant_Spider is just an example. The player will have an inventory, made up of a container class, which should be created before the player is made as should all part classes in the diagram (ex. Level, player, rooms). Some effects should be added to the effects array in the entities class when used, specifically ReduceMaxHealth, ReduceBaseDamage, and Slow, but others like Heal should not as healing does not have a lasting effect. Items can be consumables, weapons, or keys. Some consumables, like keys will be of usageType “self”, meaning they can only applied to the player. Others, of usageType “enemy” are only used on enemies. Weapons will have unique durability and damage, durability is lowered 1 every attack. 
+
+## Class Diagram!
+![UML Diagram drawio roomcorrections](https://user-images.githubusercontent.com/28524112/222705543-da306cfd-061a-4ac3-bb08-4d4ec1651eee.png)
+This diagram shows a tentative outline of the classes we will use for the project.
+ - It should be noted that whether it is shown explicitly or not, all constructors of subclasses should have the necessary parameters to also call the constructor of their supers.
+ - A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. 
+   - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms.
+   - The story class will make use of StoryIO, an abstraction for input/output which provides input validation and can take any istream or ostream as parameters. (cin, cout, isstream, osstream)
+ - The level will hold all the Rooms and keep track of the rooms the player has been in as well as the difficulty of the story. 
+ - A room can have an entity, container, or both. 
+   - The story should not allow the container to be opened or the player to move to different room unless the enemy is dead or is not there. 
+   - A locked room cannot be entered without the correct key in the inventory, once entered the key is consumed and the lockedroom is marked unlocked. 
+   - Rooms can have a chance to spawn an enemy when first explored (to add randomness). 
+   - The room map is a 2d array, to represent x and y coordinates. 
+ - Weapons and enemies should be defined per story, Giant_Spider is just an example. 
+ - The player will have an inventory, made up of a container class, which should be created before the player is made as should all part classes in the diagram (ex. Level, player, rooms). 
+ - Some effects should be added to the effects array in the entities class when used, specifically ReduceMaxHealth, ReduceBaseDamage, and Slow, but others like Heal should not as healing does not have a lasting effect.
+ - Items can be consumables, weapons, or keys. Some consumables will be of usageType “self”, meaning they can only applied to the player. 
+   - Others, of usageType “enemy” are only used on enemies. Weapons will have unique durability and damage, durability is lowered 1 every attack. 
+   - Keys should be used only when when the user interacts with a locked door or container.
+
+   
+   
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
@@ -61,6 +81,9 @@ This diagram shows a tentative outline of the classes we will use for the projec
  > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
  > * What tasks you are planning for this next sprint.
 
+- UML SOLID Updates
+  - StoryIO was created to address IO into the story. It is an application of the Single Responsibility principle as it removes the job of user input validation and direct interfacing with cin and cout. It is implemented by replacing cin/cout usage with StoryIO in functions within the story class. StoryIO allows us to use any istream or ostream meaning we can easily switch between testing with stringstreams and production with cin/cout. The smaller class also had much more clear tests for itself.
+  - The Dependency Inversion Principle and Liskov substitution principle was applied to the item classes children. Consumable, Weapon, and Key all implement use(entity), which can be called by the story when needed and thus the story does not care what type of item it is. The DIP principle reduced the complexity of the story class, which was expected to take the burden of implementing the usage of items. Furthermore, if we wish to change the implementation of an item, it is easier to rewrite tests and headers than if it were part of a larger class. The Liskov principle in this case means our items are all similar and their usage is predictable.
  
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
@@ -75,4 +98,5 @@ This diagram shows a tentative outline of the classes we will use for the projec
  > Instructions on installing and running your application
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+
 
