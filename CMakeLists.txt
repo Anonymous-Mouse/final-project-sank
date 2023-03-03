@@ -19,7 +19,7 @@ include_directories(
 
 
 add_executable(runAllTests
-
+  ./src/entity.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)
