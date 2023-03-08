@@ -1,4 +1,5 @@
 #include "LockedContainer.h"
+#include "Container.h"
 #include <string>
 
 using namespace std;
