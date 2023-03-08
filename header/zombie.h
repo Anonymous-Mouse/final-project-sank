@@ -5,7 +5,7 @@
 class Zombie: public Enemy{
 public:
     Zombie(string name, int health, int baseDamage, int damageSpread, int difficultyMultiplier) : Enemy(name, health, baseDamage, damageSpread, difficultyMultiplier){}
-
+    ~Zombie();
 };
 
 #endif
