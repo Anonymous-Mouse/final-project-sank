@@ -19,6 +19,8 @@ include_directories(
 
 
 add_executable(runAllTests
+  ./src/PlayerClass.cpp
+  ./src/entity.cpp
   ./src/enemy.cpp
   ./src/rat.cpp
   ./src/spider.cpp

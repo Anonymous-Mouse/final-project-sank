@@ -64,14 +64,25 @@ TEST(EnemyTests, testAddEffect){
 }
 
 TEST(EnemyTests, testAddTwoEffects){
-    Rat* rat = new Rat("Rat", 100,10,1,1);
-    rat->addEffect(ReduceMaxHealth);
-    EXPECT_TRUE(rat->addEffect(Slow));
+    Spider* spider = new Spider("Spider", 100,10,1,1);
+    spider->addEffect(ReduceMaxHealth);
+    EXPECT_TRUE(spider->addEffect(Slow));
 }
 
 TEST(EnemyTests, testRemoveEffect){
-    Rat* rat = new Rat("Rat", 100,10,1,1);
-    rat->addEffect(ReduceMaxHealth);
-    EXPECT_TRUE(rat->removeEffect(ReduceMaxHealth));
+    Zombie* zombie = new Zombie("Zombie", 100,10,1,1);
+    zombie->addEffect(ReduceMaxHealth);
+    EXPECT_TRUE(zombie->removeEffect(ReduceMaxHealth));
 }
+
+TEST(EnemyTests, testDamageEntity){
+    Spider* spider = new Spider("Spider", 200,20,1,1);
+    Player* officer = new Player("Stewart", "Officer", 100, 20);
+    spider->addEffect(ReduceMaxHealth);
+    spider->damageEntity(officer);
+    EXPECT_EQ(officer->getHealth(), 80);
+    EXPECT_TRUE(officer->findEffect(ReduceMaxHealth));
+    EXPECT_FALSE(officer->findEffect(Slow));
+}
+
 

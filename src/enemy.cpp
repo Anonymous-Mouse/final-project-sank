@@ -15,9 +15,12 @@ int Enemy::getEscapeChance(){
     return this->EscapeChance;
 }
 
-void Enemy::damageEntity(/*Player* playerTarget or Player & playerTarget*/){
-    //May need to refactor this function once it has access to the Player class
-    //playerTarget->setHealth(playerTarget->getHealth() - baseDamage);
+void Enemy::damageEntity(Player* playerTarget){
+    playerTarget->setHealth(playerTarget->getHealth() - BaseDamage);
+    vector<StatusEffect> temp = getEffects();
+    for(vector<StatusEffect>::iterator it = Effects.begin(); it != Effects.end(); ++it){
+        playerTarget->addEffect(*it);
+    }
     
 }
 
@@ -52,10 +55,10 @@ void Enemy::damageEntity(/*Player* playerTarget or Player & playerTarget*/){
         }else{
             auto it = find(Effects.begin(), Effects.end(), effect);
             if(it != Effects.end()){
-                Effects.erase(it);
+                this->Effects.erase(it);
             }
             auto doubleCheck = find(Effects.begin(), Effects.end(), effect);
-            if(it != Effects.end()){
+            if(doubleCheck != Effects.end()){
                 return false;
             }
             else{

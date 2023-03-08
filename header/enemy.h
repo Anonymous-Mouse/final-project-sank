@@ -1,7 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include "../header/entity.h"
-#include "../header/player.h"
+#include "../header/PlayerClass.h"
 #include <string>
 #include <algorithm>
 
@@ -27,7 +27,7 @@ public:
     int getEscapeChance();
     int getBaseDamage();
     int getDamageSpread();
-    void damageEntity(/*Player playerTarget*/);
+    void damageEntity(Player* playerTarget);
     virtual bool addEffect(StatusEffect effect);
     virtual bool removeEffect(StatusEffect effect);
 };
