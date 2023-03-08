@@ -19,6 +19,7 @@ class Room{
     std::string getName();
     bool isThereEnemy();
     bool isThereChest();
+    virtual bool isLocked();
     Enemy& getEnemy();
     Container& getChest();
 

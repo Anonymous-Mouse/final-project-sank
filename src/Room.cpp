@@ -14,6 +14,10 @@ bool Room::rollEnemySpawn(){
     }
 }
 
+bool Room::isLocked(){
+    return false;
+}
+
 std::string Room::getName(){
     return this->Name;
 }

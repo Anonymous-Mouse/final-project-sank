@@ -14,7 +14,7 @@ class lockedRoom: public Room{
 
     public:
         bool unlock(std::string);
-        bool isLocked();
+        bool isLocked() override;
         lockedRoom(std::string keyName, std::string roomName, Enemy* enemy = nullptr, int EnemySpawnChance = 0, Container* container = nullptr);
         //lockedRoom(std::string keyName, std::string roomName);
 
