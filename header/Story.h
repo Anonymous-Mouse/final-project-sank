@@ -3,7 +3,7 @@
 #include "../header/StoryIO.h"
 
 class Story {
-    private:
+    public:
         void StartGameMenu(StoryIO);
         void Menu();
         void OptionsMenu(StoryIO);

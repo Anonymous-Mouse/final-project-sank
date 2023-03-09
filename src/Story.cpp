@@ -8,7 +8,7 @@ void Story::Menu() {
     std::ostringstream ostr;
     std::istringstream istr;
     StoryIO io(istr, ostr);
-    void StartGameMenu(StoryIO io);
+    StartGameMenu(io);
 }
 
 void Story::StartGameMenu(StoryIO io) {
@@ -28,7 +28,7 @@ void Story::StartGameMenu(StoryIO io) {
     }
 
     if (input == 3) {
-        void OptionsMenu(StoryIO io);
+        OptionsMenu(io);
     }
 }
 
@@ -41,7 +41,7 @@ void Story::OptionsMenu(StoryIO io) {
     int input = io.getDigit(3);
 
     if (input == 1) {
-        void DifficultyMenu(StoryIO io);
+        DifficultyMenu(io);
     }
 
     if (input == 2) {
@@ -49,7 +49,7 @@ void Story::OptionsMenu(StoryIO io) {
     }
 
     if (input == 3) {
-        void StartGameMenu(StoryIO io);
+        StartGameMenu(io);
         //This will bring players back to the start menu
     }
 }
@@ -76,12 +76,7 @@ void Story::DifficultyMenu(StoryIO io) {
     }
 
     if (input == 4) {
-        void OptionsMenu(StoryIO io);
+        OptionsMenu(io);
         //This will bring the player back to the options menu
     }
-}
-
-int main() {
-    void Menu();
-    return 0;
 }
