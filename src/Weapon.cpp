@@ -1,4 +1,5 @@
 #include <string>
+#include <cassert>
 
 #include "../header/Weapon.h"
 #include "../header/Item.h"
@@ -21,6 +22,8 @@ bool Weapon::use(Entity* enemy){
 }
 
 Weapon::Weapon(std::string Name, int damage, int durability): Item(Name){
+    assert(damage >= 0 && "Damage of a weapon should not be less than 0");
+    assert(durability >=0 && "Durability of a weapon should not be less than 0");
     this->durability = durability;
     this->damage = damage;
 }
