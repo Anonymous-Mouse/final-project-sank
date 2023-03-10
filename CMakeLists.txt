@@ -19,6 +19,11 @@ include_directories(
 
 
 add_executable(runAllTests
+  ./tests/itemTests.cpp
+  ./src/Key.cpp
+  ./src/Weapon.cpp
+  ./src/Item.cpp
+  ./src/Consumable.cpp
 
 )
 
