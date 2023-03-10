@@ -12,10 +12,10 @@ class Item{
     public:
         std::string getName();
 
-        virtual bool use(Entity) = 0;
+        virtual bool use(Entity*) = 0;
 
         Item(std::string Name);
 
-}
+};
 
 #endif

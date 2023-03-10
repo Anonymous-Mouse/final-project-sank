@@ -1,7 +1,8 @@
 #include "../header/Key.h"
+#include "../header/Entity.h"
 
-bool Key::use(Entity) override{
-    throw "Invalid usage of Key"
+bool Key::use(Entity*){
+    throw "Invalid usage of Key";
 }
 
 

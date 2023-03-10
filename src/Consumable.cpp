@@ -4,14 +4,18 @@
 #include "./Entity.h"
 #include <string>
 
-StatusEffect Consumable::getEffect();
-UsageType Consumable::getUsage();
+StatusEffect Consumable::getEffect(){
+    return this->effect;
+}
+UsageType Consumable::getUsage(){
+    return this->usage;
+}
 
-bool Consumable::use(Entity enemy) override{
-    return enemy.addEffect(this->getEffect());
+bool Consumable::use(Entity* enemy){
+    return enemy->addEffect(this->getEffect());
 }
 
 Consumable::Consumable(std::string Name, StatusEffect effect, UsageType usage): Item(Name){
     this->effect = effect;
-    this->usage = usage
+    this->usage = usage;
 }

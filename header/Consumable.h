@@ -8,7 +8,7 @@
 enum UsageType{
     self,
     enemy
-}
+};
 
 class Consumable: public Item{
     private:
@@ -19,9 +19,9 @@ class Consumable: public Item{
         StatusEffect getEffect();
         UsageType getUsage();
 
-        bool use(Entity) override;
+        bool use(Entity*) override;
 
         Consumable(std::string Name, StatusEffect effect, UsageType usage);
-}
+};
 
 #endif

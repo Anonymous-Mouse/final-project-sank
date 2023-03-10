@@ -12,11 +12,11 @@ int Weapon::getDurability(){
 }
 
 void Weapon::lowerDurability(){
-    this->durability = (durability - 1)
+    this->durability = (durability - 1);
 }
 
-bool Weapon::use(Entity enemy) override{
-    enemy.setHealth(Entity.getHealth() - this->getDamage());
+bool Weapon::use(Entity* enemy){
+    enemy->setHealth(enemy->getHealth() - this->getDamage());
     return true;
 }
 

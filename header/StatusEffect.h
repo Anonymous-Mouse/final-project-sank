@@ -6,6 +6,6 @@ enum StatusEffect{
     Heal,
     ReduceBaseDamage,
     Slow
-}
+};
 
 #endif

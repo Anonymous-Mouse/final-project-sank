@@ -7,9 +7,9 @@
 class Key: public Item{
 
     public:
-        bool use(Entity) override;
+        bool use(Entity*) override;
 
         Key(std::string Name);
-}
+};
 
 #endif

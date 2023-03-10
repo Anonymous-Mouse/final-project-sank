@@ -16,15 +16,15 @@ class Weapon: public Item{
         int getDamage();
         int getDurability();
 
-        void lowerDurability()
+        void lowerDurability();
 
-        bool use(Entity) override;
+        bool use(Entity*) override;
 
         Weapon(std::string Name, int damage, int durability);
     
 
 
-}
+};
 
 
 #endif
