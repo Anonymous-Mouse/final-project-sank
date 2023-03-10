@@ -11,8 +11,8 @@ UsageType Consumable::getUsage(){
     return this->usage;
 }
 
-bool Consumable::use(Entity* enemy){
-    return enemy->addEffect(this->getEffect());
+bool Consumable::use(Entity* entity){
+    return entity->addEffect(this->getEffect());
 }
 
 Consumable::Consumable(std::string Name, StatusEffect effect, UsageType usage): Item(Name){

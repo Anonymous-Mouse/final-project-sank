@@ -13,7 +13,9 @@ int Weapon::getDurability(){
 }
 
 void Weapon::lowerDurability(){
-    this->durability = (durability - 1);
+    if(durability > 0){
+        this->durability = (durability - 1);
+    }
 }
 
 bool Weapon::use(Entity* enemy){

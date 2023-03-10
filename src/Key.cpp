@@ -1,8 +1,10 @@
 #include "../header/Key.h"
 #include "../header/Entity.h"
+#include <cassert>
 
 bool Key::use(Entity*){
-    throw "Invalid usage of Key";
+    assert(false && "Key should not be used this way.");
+    return false;
 }
 
 
