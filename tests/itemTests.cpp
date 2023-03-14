@@ -20,6 +20,9 @@ class MockEntity: public Entity{
             this->Effects.push_back(eff);
             return true;
         }
+        bool removeEffect(StatusEffect effect) override{
+            return false;
+        }
 };
 
 TEST(Item, Construct){
