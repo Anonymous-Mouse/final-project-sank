@@ -1,22 +1,24 @@
 #include "../header/Container.h"
+#include "../header/Item.h"
 #include <string>
 #include <vector>
 
 using namespace std;
 
-Container::Container(vector<Item> contents, string name, int maxItems) {
+Container::Container(vector<Item> contents, string name, int maxItems, string password) {
     this->contents = contents;
     this->name = name; 
     this->maxItems = maxItems;
     this->locked = true;
+    this->password = password;
 }
 
 bool Container::isLocked() {
     return locked;
 }
 
-bool Container::unlock(string key) {
-    if (locked && key == this->key) {
+bool Container::unlock(string password) {
+    if (locked && password == this->password) {
         locked = false;
         return true;
     }

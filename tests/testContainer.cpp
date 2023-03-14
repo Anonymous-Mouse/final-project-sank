@@ -1,5 +1,4 @@
 #include "Container.h"
-#include "LockedContainer.h"
 #include <gtest/gtest.h>
 
 TEST(ContainerTest, IsLockedTest) {
@@ -40,6 +39,7 @@ TEST(ContainerTest, RemoveItemIndexTest) {
 
     EXPECT_EQ(container.getContentsAmount(), 2);
 }
+
 
 TEST(ContainerTest, GetNameTest) {
     vector<Item> contents = {Item("book"), Item("pen"), Item("phone")};
