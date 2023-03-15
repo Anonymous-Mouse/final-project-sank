@@ -21,6 +21,10 @@ include_directories(
 add_executable(runAllTests
   ./src/StoryIO.cpp
   ./tests/testStoryIO.cpp
+  ./src/Entity.cpp
+  ./src/Enemy.cpp
+  ./src/PlayerClass.cpp
+  ./tests/testPlayerClass.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)

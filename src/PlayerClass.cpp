@@ -1,24 +1,67 @@
-#include "PlayerClass.h"
-#include <iostream>
-#include <string>
+#include "../header/PlayerClass.h"
 
-using namespace std;
+// Player::~Player() {} //destructs player
 
-Player::Player(const string name, const string type, int health, int attack) {
-    PlayerName = name;
-    PlayerType = type;
-    PlayerHealth = health;
-    PlayerAttack = attack;
+int Player::getBaseDamage() {
+    return this->BaseDamage;
 }
 
-void PlayerCreation(const string pName, int choice) {
-    if (choice == 1) {
-        Player* Officer = new Player(pName, "Officer", 100, 20);
-    }
-    if (choice == 2) {
-        Player* Scavenger = new Player(pName, "Scavenger", 100, 15);
-    }
-    if (choice == 3) {
-        Player* EMT = new Player(pName, "EMT", 100, 20);
-    }
-}
+// void Player::damageEntity(Enemy* enemyTarget) {
+//     enemyTarget->setHealth(enemyTarget->getHealth() - BaseDamage);
+//     vector<StatusEffect> temp = getEffects();
+//     for(vector<StatusEffect>::iterator it = Effects.begin(); it != Effects.end(); ++it){
+//         enemyTarget->addEffect(*it);
+//     }
+// }
+
+// bool Player::addEffect(StatusEffect effect) {
+//     if(this->Effects.empty()){
+//         this->Effects.push_back(effect);
+//         return true;
+//     }
+//     else{
+//         bool foundElement = false;
+//         for(vector<StatusEffect>::iterator it = Effects.begin(); it != Effects.end(); ++it) {
+//              if(*it == effect){
+//                 foundElement = true;
+//                 break;
+//              }
+//         }
+//         if(foundElement == true){
+//             //do nothing, element already exists in container
+//             return false;
+//         }
+//         else{
+//             this->Effects.push_back(effect);
+//             return true;
+//         }
+//     }
+// }
+
+// bool Player::removeEffect(StatusEffect effect) {
+//     if(this->Effects.empty()){
+//         return true;
+//     }
+//     else{
+//         auto it = find(Effects.begin(), Effects.end(), effect);
+//         if(it != Effects.end()){
+//             this->Effects.erase(it);
+//         }
+//         auto doubleCheck = find(Effects.begin(), Effects.end(), effect);
+//         if(doubleCheck != Effects.end()){
+//             return false;
+//         }
+//         else{
+//             return true;
+//         }
+//     }
+// }
+
+// Weapon* Player::getWeapon() { //add weapon to the contents vector
+//     if ()
+// }
+
+// void Player::setWeapon(Weapon*) {
+
+// }
+
