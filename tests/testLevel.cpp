@@ -1,47 +1,82 @@
 #include "gtest/gtest.h"
 #include "../header/Level.h"
 #include "../header/Room.h"
-#include "../header/Enemy.h"
 #include "../header/Container.h"
-#include <iostream>
+#include <vector>
 
-TEST(LevelTest, ConstructorAndGetDifficulty) {
-    Room rooms[3][3];
-    Room exploredRooms[3][3];
-    int difficulty = 2;
-    Level level(difficulty, rooms, exploredRooms);
-    EXPECT_EQ(level.getDifficulty(), difficulty);
+using namespace std;
+
+class MockLevelTest : public testing::Test {
+protected:
+    void SetUp() override {
+        vector<vector<Room*>> roomVector {
+            {new Room(), nullptr, new Room()},
+            {new Room(), new Room(), nullptr},
+            {nullptr, new Room(), nullptr}
+        };
+        level = new Level(1, roomVector);
+    }
+
+    void TearDown() override {
+        for (auto row : level->roomVector) {
+            for (auto room : row) {
+                delete room;
+            }
+        }
+        delete level;
+    }
+
+    Level* level; 
+};
+
+TEST(LevelTest, GetDifficulty) {
+    EXPECT_EQ(level->getDifficulty(), 1);
 }
 
-TEST(LevelTest, IsThereRoom) {
-    Room rooms[3][3];
-    Room exploredRooms[3][3];
-    Level level(1, rooms, exploredRooms);
-    EXPECT_TRUE(level.isThereRoom(0, 0));
-    EXPECT_TRUE(level.isThereRoom(2, 2));
-    EXPECT_FALSE(level.isThereRoom(3, 3));
+TEST(LevelTest, GetRoomAtValid) {
+    Room* room = level->getRoomAt(0, 0);
+    EXPECT_NE(room, nullptr);
+    EXPECT_EQ(room->getName(), "");
+    EXPECT_EQ(level->exploredRooms[0][0], true);
 }
 
-TEST(LevelTest, SetAndGetRoomAt) {
-    Room rooms[3][3];
-    Room exploredRooms[3][3];
-    Level level(1, rooms, exploredRooms);
-    Room room;
-    Enemy enemy;
-    int enemySpawnChance = 50;
-    Container container;
-    room = Room(enemy, enemySpawnChance, container);
-    level.setRoom(1, 1, room);
-    EXPECT_EQ(level.getRoomAt(1, 1), room);
+TEST(LevelTest, GetRoomAtInvalid) {
+    Room* rooms = level->getRoomAt(-1, 0);
+    EXPECT_EQ(room, nullptr);
+    room = level->getRoomAt(0, 3);
+    EXPECT_EQ(room, nullptr);
+    EXPECT_FALSE(level->getRoomAt[-1][0]);
+    EXPECT_FALSE(level->getRoomAt[0][3]);
+}
+
+TEST(LevelTest, IsThereRoomValid) {
+    EXPECT_TRUE(level->getRoomAt(0, 0));
+    EXPECT_TRUE(level->exploredRooms[0][0]);
+    EXPECT_TRUE(level->isThereRoom(1, 1));
+    EXPECT_TRUE(level->exploredRooms[1][1]);
+    EXPECT_FALSE(level->isThereRoom(-1, 0));
+    EXPECT_FALSE(level->isThereRoom(0, 3));
 }
 
 TEST(LevelTest, GenerateMap) {
-    Room rooms[3][3];
-    Room exploredRooms[3][3];
-    Level level(1, rooms, exploredRooms);
-    string map = level.generateMap(3, 3);
-    EXPECT_EQ(map.length(), 23);
-    EXPECT_EQ(map[0], '+');
-    EXPECT_EQ(map[22], '+');
-    EXPECT_EQ(map[11], 'P');
+    string expectedMap = 
+        "P - R \n"
+        "- - - \n"
+        "R - - \n";
+    EXPECT_EQ(level->generateMap(0, 1), expectedMap);
 }
+
+TEST(LevelTest, SetRoomValid) {
+    Room* newRoom = new Room("new room");
+    level->setRoom(1, 2, *newRoom);
+    EXPECT_EQ(level->roomVector[1][2], newRoom);
+    delete newRoom;
+}
+
+TEST(LevelTest, SetRoomInvalid) {
+    Room* newRoom = new Room("new room");
+    level->setRoom(3, 0, *newRoom);
+    EXPECT_EQ(level->roomVector[1][2], nullptr);
+    delete newRoom;
+}
+

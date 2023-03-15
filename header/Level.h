@@ -1,8 +1,9 @@
+#ifndef LEVEL_H_INCLUDED
+#define LEVEL_H_INCLUDED
 #include "../header/Room.h"
-#include "..header/Container.h"
-#include "../header/Enemy.h"
+#include "../header/Container.h"
 #include <string>
-#include <array>
+#include <vector>
 #include <cstdlib>
 #include <ctime>
 
@@ -10,18 +11,17 @@ using namespace std;
 
 class Level {
 private:
-    Rooms Room[][];
-    exploredRooms[][];
+    vector<vector<Room*>> roomVector;
+    vector<vector<bool>> exploredRooms;
     int difficulty;
-    int mapSize[];
+    vector<int> mapSize;
 
 public:
-    Level(int difficulty, Rooms Room[][], Room exploredRooms[][]);
-    Level(int difficulty, Rooms Room[][]);
+    Level(int difficulty, vector<vector<Room*>> roomVector);
     int getDifficulty();
-    Room getRoomAt(int, int);
+    Room* getRoomAt(int, int);
     bool isThereRoom(int, int);
     string generateMap(int, int);
-    void setRoom(int, int, Room);
+    void setRoom(int, int, Room*, Room);
 };
 #endif

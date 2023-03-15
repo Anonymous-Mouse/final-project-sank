@@ -1,46 +1,39 @@
 #include "../header/Level.h"
 #include "../header/Room.h"
-#include "..header/Container.h"
-#include "../header/Enemy.h"
+#include "../header/Container.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
 
-Level::Level(int difficulty, Rooms Room[][], Room exploredRooms[][]) {
+Level::Level(int difficulty, vector<vector<Room*>> roomVector) {
     this->difficulty = difficulty;
-    this->Room = Room;
-    this->exploredRooms = exploredRooms;
-    this->mapSize[0] = sizeof(Room) / sizeof(Room[0]);
-    this->mapSize[1] = sizeof(Room[0]) / sizeof(Room[0][0]);
-}
-
-Level::Level(int difficulty, Rooms Room[][]) {
-    this->difficulty = difficulty;
-    this->Room = Room;
-    this->exploredRooms = new Rooom*[mapSize[0]];
-    for(int i = 0; i < mapSize[0]; i++) {
-        this->exploredRooms[i] = new Room[mapSize[1]];
+    this->roomVector = roomVector;
+    this->exploredRooms.resize(roomVector.size());
+    for (int i = 0; i < roomVector.size(); i++) {
+        this->exploredRooms[i].resize(roomVector[i].size());
     }
+    this->mapSize.push_back(roomVector.size());
+    this->mapSize.push_back(roomVector[0].size());
 }
 
 int Level::getDifficulty() {
     return this->difficulty;
 }
 
-Room Level::getRoomAt(int x, int y) {
+Room* Level::getRoomAt(int x, int y) {
     if (isThereRoom(x, y)) {
-        this->exploredRooms[x][y] = this->Room[x][y];
-        return this->Room[x][y];
+        this->exploredRooms[x][y] = true;
+        return this->roomVector[x][y];
     }
     else {
-        cout << "Invalid coordinates: (" << x << ", " << y << ")" << endl;
-        return NULL;
+        cerr << "Invalid coordinates: (" << x << ", " << y << ")" << endl;
+        return nullptr;
     }
 }
 
 bool Level::isThereRoom(int x, int y) {
-    if (x >= 0 && x < mapSize[0] && y >= 0 && y < mapSize[1]) {
+    if (x < roomVector.size() && y < roomVector[x].size() && roomVector[x][y] != nullptr) {
         return true;
     }
     else {
@@ -56,15 +49,15 @@ string Level::generateMap(int playerX, int playerY) {
                 map += "P ";
             }
             else if (isThereRoom(i, j)) {
-                if (this->exploredRooms[i][j].getName()) {
+                if (this->exploredRooms[i][j]) {
                     map += "X ";
                 }
                 else {
                     map += "- "
                 }
-                else {
-                    map += " ";
-                }
+            }
+            else {
+                map += " ";
             }
         }
         map += "\n";
@@ -73,10 +66,10 @@ string Level::generateMap(int playerX, int playerY) {
 }
 
 void Level::setRoom(int x, int y, Room room) {
-    if(isThereRoom(x, y)) {
-        this->Room[x][y] = room;
+    if(x < roomVector.size() && y < roomVector[x].size()) {
+        this->rommVector[x][y] = room;
     }
     else {
-        cout << "Invalid coordinates: (" << x << ", " << u << ")" << endl;
+        cerr << "Invalid coordinates: (" << x << ", " << u << ")" << endl;
     }
 }
