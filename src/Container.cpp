@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Container::Container(vector<Item> contents, string name, int maxItems, string password) {
+Container::Container(vector<Item*> contents, string name, int maxItems, string password) {
     this->contents = contents;
     this->name = name; 
     this->maxItems = maxItems;
