@@ -31,8 +31,8 @@ int Container::getContentsAmount() {
     return contents.size();
 }
 
-Item Container::getItemIndex(int index) {
-    return contents[index];
+Item* Container::getItemIndex(int index) {
+    return &contents[index];
 }
 
 void Container::removeItemIndex(int index) {
