@@ -11,9 +11,9 @@ public:
     bool isLocked();
     bool unlock(string password;)
     int getContentsAmount();
-    void getItemIndex(int);
-    void removeItemIndex(int);
-    void getName(int);
+    Item* getItemIndex(int index);
+    void removeItemIndex(int index);
+    string getName();
 
 private:
     vector<Item*> contents;
