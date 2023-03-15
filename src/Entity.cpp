@@ -1,5 +1,5 @@
 
-#include "../header/entity.h"
+#include "../header/Entity.h"
 
 Entity::~Entity() {
 

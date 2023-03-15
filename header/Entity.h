@@ -1,10 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
-
 #include "../header/StatusEffect.h"
-#include <string>
 #include <vector>
-
+#include <string>
 using namespace std;
 
 
