@@ -1,5 +1,8 @@
-#include "Container.h"
 #include <gtest/gtest.h>
+#include "../header/Container.h"
+#include "../header/Item.h"
+
+using namespace std;
 
 TEST(ContainerTest, IsLockedTest) {
     vector<Item> contents = {Item("key"), Item("book")};
