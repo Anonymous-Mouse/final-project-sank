@@ -20,11 +20,11 @@ include_directories(
 
 add_executable(runAllTests
   ./src/PlayerClass.cpp
-  ./src/entity.cpp
-  ./src/enemy.cpp
-  ./src/rat.cpp
-  ./src/spider.cpp
-  ./src/zombie.cpp
+  ./src/Entity.cpp
+  ./src/Enemy.cpp
+  ./src/Rat.cpp
+  ./src/Spider.cpp
+  ./src/Zombie.cpp
   ./tests/testEnemy.cpp
 )
 

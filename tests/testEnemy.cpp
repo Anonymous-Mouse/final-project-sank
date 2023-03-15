@@ -1,10 +1,44 @@
 #include "gtest/gtest.h"
 #include  "gmock/gmock.h"
-#include "../header/spider.h"
-#include "../header/zombie.h"
-#include "../header/rat.h"
+#include "../header/PlayerClass.h"
+#include "../header/StatusEffect.h"
+#include "../header/Spider.h"
+#include "../header/Zombie.h"
+#include "../header/Rat.h"
 
 using namespace std;
+
+class MockPlayer: public Entity{
+    public:
+    MockPlayer(string Name, int Health) : Entity(Name, Health){
+
+    };
+    ~MockPlayer(){};
+    bool addEffect(StatusEffect effect) override{
+        this->Effects.push_back(effect);
+        return true;
+    }
+    bool removeEffect(StatusEffect effect) override{
+         if(this->Effects.empty()){
+            return true;
+        }else{
+            auto it = find(Effects.begin(), Effects.end(), effect);
+            if(it != Effects.end()){
+                this->Effects.erase(it);
+            }
+            auto doubleCheck = find(Effects.begin(), Effects.end(), effect);
+            if(doubleCheck != Effects.end()){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    }
+
+
+};
+
 TEST(EnemyTests, testSpiderConstructor){
     Spider* spider = new Spider("Spider",100,10,2,2);
     EXPECT_THAT(spider->getName(), "Spider");
@@ -77,12 +111,28 @@ TEST(EnemyTests, testRemoveEffect){
 
 TEST(EnemyTests, testDamageEntity){
     Spider* spider = new Spider("Spider", 200,20,1,1);
-    Player* officer = new Player("Stewart", "Officer", 100, 20);
+    MockPlayer* mockplayer = new MockPlayer("Officer", 100);
     spider->addEffect(ReduceMaxHealth);
-    spider->damageEntity(officer);
-    EXPECT_EQ(officer->getHealth(), 80);
-    EXPECT_TRUE(officer->findEffect(ReduceMaxHealth));
-    EXPECT_FALSE(officer->findEffect(Slow));
+    spider->damageEntity(mockplayer);
+    EXPECT_EQ(mockplayer->getHealth(), 80);
+    
+    vector<StatusEffect> v = mockplayer->getEffects();
+    EXPECT_EQ(v.size(), 1);
+    EXPECT_THAT(v[0], ReduceMaxHealth);
 }
 
+TEST(EnemyTests, testMultipleEffects){
+    Zombie* zombie = new Zombie("Zombie", 100, 10, 1,1);
+    MockPlayer* mockplayer = new MockPlayer("EMT", 100);
+    zombie->addEffect(Slow);
+    zombie->addEffect(ReduceMaxHealth);
+    zombie->addEffect(ReduceBaseDamage);
+    zombie->damageEntity(mockplayer);
 
+    vector<StatusEffect> v = mockplayer->getEffects();
+    EXPECT_EQ(v.size(), 3);
+    EXPECT_THAT(v[0], Slow);
+    EXPECT_THAT(v[1], ReduceMaxHealth);
+    EXPECT_THAT(v[2], ReduceBaseDamage);
+
+}
