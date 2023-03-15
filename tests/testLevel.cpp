@@ -49,7 +49,7 @@ TEST(LevelTest, GetRoomAtInvalid) {
     EXPECT_FALSE(level->getRoomAt[0][3]);
 }
 
-TEST(LevelTest, IsThereRoomValid) {
+TEST(LevelTest, IsThereRoomValidInvalid) {
     EXPECT_TRUE(level->getRoomAt(0, 0));
     EXPECT_TRUE(level->exploredRooms[0][0]);
     EXPECT_TRUE(level->isThereRoom(1, 1));
