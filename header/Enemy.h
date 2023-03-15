@@ -1,7 +1,6 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include "../header/Entity.h"
-#include "../header/PlayerClass.h"
 #include <string>
 #include <algorithm>
 

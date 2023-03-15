@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
 #include  "gmock/gmock.h"
-#include "../header/PlayerClass.h"
 #include "../header/StatusEffect.h"
 #include "../header/Spider.h"
 #include "../header/Zombie.h"
