@@ -27,5 +27,5 @@ class Story{
         std::vector<std::vector<Room*>> getRoomsAdjacentToPlayer();
 
         Story(std::string storyName, Level* level, StoryIO io);
-
+}
 #endif
