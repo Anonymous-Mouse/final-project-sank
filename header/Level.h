@@ -1,11 +1,9 @@
 #ifndef LEVEL_H_INCLUDED
 #define LEVEL_H_INCLUDED
 #include "../header/Room.h"
-#include "../header/Container.h"
 #include <string>
 #include <vector>
 #include <cstdlib>
-#include <ctime>
 
 using namespace std;
 

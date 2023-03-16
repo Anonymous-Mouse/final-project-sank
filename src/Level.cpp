@@ -1,6 +1,7 @@
 #include "../header/Level.h"
 #include "../header/Room.h"
-#include "../header/Container.h"
+#include <vector>
+#include <cstdlib>
 #include <string>
 #include <iostream>
 
@@ -22,14 +23,10 @@ int Level::getDifficulty() {
 }
 
 Room* Level::getRoomAt(int x, int y) {
-    if (isThereRoom(x, y)) {
-        this->exploredRooms[x][y] = true;
-        return this->roomVector[x][y];
-    }
-    else {
-        cerr << "Invalid coordinates: (" << x << ", " << y << ")" << endl;
-        return nullptr;
-    }
+    assert(isThereRoom(x, y) && "Invalid coordinates");
+
+    this->exploredRooms[x][y] = true;
+    return this->roomVector[x][y];
 }
 
 bool Level::isThereRoom(int x, int y) {
@@ -70,6 +67,6 @@ void Level::setRoom(int x, int y, Room room) {
         this->rommVector[x][y] = room;
     }
     else {
-        cerr << "Invalid coordinates: (" << x << ", " << u << ")" << endl;
+        assert(false && "Invalid coordinates");
     }
 }
