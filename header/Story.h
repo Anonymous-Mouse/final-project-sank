@@ -19,11 +19,11 @@ class Story{
     public:
         void setPlayer(Player*);
         void start();
-        void attackLoop(Enemy);
+        void attackLoop(Enemy*);
         std::vector<std::vector<Room*>> getRoomsAdjacentToPlayer();
 
-        story(std::string storyName, Level level, StoryIO io);
+        Story(std::string storyName, Level* level, StoryIO io);
         
-}
+};
 
 #endif
