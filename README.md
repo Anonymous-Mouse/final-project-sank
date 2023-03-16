@@ -37,6 +37,7 @@ Description:
 - ### Access their inventory
   - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
+
 ## Class Diagram
 ![UML Diagram drawio-update to headers](https://user-images.githubusercontent.com/28524112/225465452-35b0f385-5a47-45cb-851b-8834e1006e92.png)
 This diagram shows a tentative outline of the classes we will use for the project. 
@@ -55,7 +56,12 @@ This diagram shows a tentative outline of the classes we will use for the projec
  - Items can be consumables, weapons, or keys. Some consumables will be of usageType “self”, meaning they can only applied to the player. 
    - Others, of usageType “enemy” are only used on enemies. Weapons will have unique durability and damage, durability is lowered 1 every attack. 
    - Keys should be used only when when the user interacts with a locked door or container.
- 
+
+   
+
+- UML SOLID Updates
+  - StoryIO was created to address IO into the story. It is an application of the Single Responsibility principle as it removes the job of user input validation and direct interfacing with cin and cout. It is implemented by replacing cin/cout usage with StoryIO in functions within the story class. StoryIO allows us to use any istream or ostream meaning we can easily switch between testing with stringstreams and production with cin/cout. The smaller class also had much more clear tests for itself.
+  - The Dependency Inversion Principle and Liskov substitution principle was applied to the item classes children. Consumable, Weapon, and Key all implement use(entity), which can be called by the story when needed and thus the story does not care what type of item it is. The DIP principle reduced the complexity of the story class, which was expected to take the burden of implementing the usage of items. Furthermore, if we wish to change the implementation of an item, it is easier to rewrite tests and headers than if it were part of a larger class. The Liskov principle in this case means our items are all similar and their usage is predictable.
  
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
