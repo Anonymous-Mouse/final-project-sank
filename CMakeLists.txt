@@ -23,7 +23,10 @@ add_executable(runAllTests
   ./tests/testStoryIO.cpp
   ./src/Entity.cpp
   ./src/Enemy.cpp
-  ./src/PlayerClass.cpp
+  ./src/Player.cpp
+  ./src/Container.cpp
+  ./src/Item.cpp
+  ./src/Weapon.cpp
   ./tests/testPlayerClass.cpp
 )
 
