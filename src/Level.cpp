@@ -63,9 +63,9 @@ string Level::generateMap(int playerX, int playerY) {
     return map;
 }
 
-void Level::setRoom(int x, int y, Room room) {
+void Level::setRoom(int x, int y, Room* room) {
     if(x < roomVector.size() && y < roomVector[x].size()) {
-        this->rommVector[x][y] = room;
+        this->rommVector[x][y] = *room;
     }
     else {
         assert(false && "Invalid coordinates");

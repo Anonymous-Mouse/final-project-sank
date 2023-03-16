@@ -20,6 +20,6 @@ public:
     Room* getRoomAt(int, int);
     bool isThereRoom(int, int);
     string generateMap(int, int);
-    void setRoom(int, int, Room);
+    void setRoom(int, int, Room*);
 };
 #endif
