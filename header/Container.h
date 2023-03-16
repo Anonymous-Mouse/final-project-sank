@@ -17,7 +17,7 @@ private:
 public:
     Container(vector<Item*> contents, string name, int maxItems, string password);
     bool isLocked();
-    bool unlock(string password;)
+    bool unlock(string password);
     int getContentsAmount();
     Item* getItemIndex(int index);
     void removeItemIndex(int index);

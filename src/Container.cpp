@@ -32,7 +32,12 @@ int Container::getContentsAmount() {
 }
 
 Item* Container::getItemIndex(int index) {
-    return &contents[index];
+    if (index < contents.size()) {
+        return contents[index];
+    }
+    else {
+        return nullptr;
+    }
 }
 
 void Container::removeItemIndex(int index) {
