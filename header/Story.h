@@ -15,6 +15,10 @@ class Story{
         std::string storyName;
         Player* player;
         StoryIO io;
+        void StartGameMenu(StoryIO);
+        void Menu();
+        void OptionsMenu(StoryIO);
+        void DifficultyMenu(StoryIO);
 
     public:
         void setPlayer(Player*);
@@ -23,7 +27,5 @@ class Story{
         std::vector<std::vector<Room*>> getRoomsAdjacentToPlayer();
 
         Story(std::string storyName, Level* level, StoryIO io);
-        
-};
 
 #endif
