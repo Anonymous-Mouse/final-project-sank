@@ -1,5 +1,6 @@
 #include "../header/Level.h"
 #include "../header/Room.h"
+#include <cassert>
 #include <vector>
 #include <cstdlib>
 #include <string>
