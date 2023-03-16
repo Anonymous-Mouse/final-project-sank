@@ -38,10 +38,9 @@ Description:
   - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
 
-## Class Diagram!
-![UML Diagram drawio roomcorrections](https://user-images.githubusercontent.com/28524112/222705543-da306cfd-061a-4ac3-bb08-4d4ec1651eee.png)
-This diagram shows a tentative outline of the classes we will use for the project.
- - It should be noted that whether it is shown explicitly or not, all constructors of subclasses should have the necessary parameters to also call the constructor of their supers.
+## Class Diagram
+![UML Diagram drawio-update to headers](https://user-images.githubusercontent.com/28524112/225465452-35b0f385-5a47-45cb-851b-8834e1006e92.png)
+This diagram shows a tentative outline of the classes we will use for the project. 
  - A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. 
    - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms.
    - The story class will make use of StoryIO, an abstraction for input/output which provides input validation and can take any istream or ostream as parameters. (cin, cout, isstream, osstream)
@@ -59,9 +58,6 @@ This diagram shows a tentative outline of the classes we will use for the projec
    - Keys should be used only when when the user interacts with a locked door or container.
 
    
-   
- 
- > 
 
 - UML SOLID Updates
   - StoryIO was created to address IO into the story. It is an application of the Single Responsibility principle as it removes the job of user input validation and direct interfacing with cin and cout. It is implemented by replacing cin/cout usage with StoryIO in functions within the story class. StoryIO allows us to use any istream or ostream meaning we can easily switch between testing with stringstreams and production with cin/cout. The smaller class also had much more clear tests for itself.
