@@ -95,3 +95,16 @@ void Story::DifficultyMenu(StoryIO io) {
         //This will bring the player back to the options menu
     }
 }
+
+std::vector<std::vector<Room*>> Story::getRoomsAdjacentToPlayer() {
+    std::vector<Room*> adjacentRooms;
+    std::vector<Room*> connectedRooms = currentRoom->getConnectRooms();
+    int numConnectedRooms = connectedRooms.size();
+    for (int i = 0; i < numConnectedRooms; i++) {
+        Room* connectedRooms = connectedRooms[i];
+        if (connectedRooms != nullptr) {
+            adjacentRooms.push_back(connectedRooms);
+        }
+    }
+    return adjacentRooms;
+}
