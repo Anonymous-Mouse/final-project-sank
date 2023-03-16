@@ -12,7 +12,7 @@ using namespace std;
 
 class MockEnemy : public Entity {
     public:
-        MockEnemy(string name, int health, int baseDamage, int damageSpread, int difficultyMultiplier) : Entity(Name, Health) {};
+        MockEnemy(string name, int health, int baseDamage, int damageSpread, int difficultyMultiplier) : Entity(name, health) {};
         ~MockEnemy(){};
         bool addEffect(StatusEffect effect) override{
             this->Effects.push_back(effect);
@@ -133,8 +133,8 @@ TEST(PlayerTests, testRemoveEffect) {
 TEST(PlayerTests, testDamageEntity) {
     vector<Item*> contents = {};
     Container* newContainer = new Container(contents,"inv",5,"ABCD");
-    Player* player = new Player("Nick",100,20,newContainer);
+    Player* player = new Player("Nick",100,25,newContainer);
     MockEnemy* enemy = new MockEnemy("Rat", 100, 10, 1, 1);
     player->damageEntity(enemy);
-    EXPECT_EQ(enemy->getHealth(), 80);
+    EXPECT_EQ(enemy->getHealth(), 75);
 }
