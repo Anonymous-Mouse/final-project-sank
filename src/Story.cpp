@@ -45,8 +45,9 @@ void Story::gameCycle(StoryIO io){
         io << "1. View the map." << io.endl;
         io << "2. Move to a different room." << io.endl;
         io << "3. Access Inventory." << io.endl;
+        io << "4. Back to Main Menu." << io.endl;
 
-        int input = io.getDigit(3);
+        int input = io.getDigit(4);
 
         if (input == 1)
         {
@@ -59,9 +60,9 @@ void Story::gameCycle(StoryIO io){
             int newPosY = this->player->getLocationY();
             if(!this->level->isRoomExplored(newPosX,newPosY)){
                 Room* newRoom = this->level->getRoomAt(newPosX, newPosY);
-                io << "get room" << io.endl;
+                //io << "get room" << io.endl;
                 if(newRoom->rollEnemySpawn()){
-                    io << "roll spawn" << io.endl;
+                    //io << "roll spawn" << io.endl;
                     this->attackLoop(io, &(newRoom->getEnemy()),plrX,plrY);
                 }
             }
@@ -69,12 +70,18 @@ void Story::gameCycle(StoryIO io){
         }else
         if(input == 3 ){
             inventoryMenu(io);
+        }else if(input == 4 ){
+            return;
+        }else{
+            io << "Invalid input" << io.endl;
         }
 
+        
     }while(loopCycle == true);
 }
 
 void Story::inventoryMenu(StoryIO io){
+    do{
     io << "Your inventory: " << player->getInventory()->getContentsAmount() << "/" << player->getInventory()->getMaxItems() << io.endl;
     //io << player->getInventory()->getContentsAmount() << io.endl;
     Weapon* equippedWeapon = this->player->getWeapon();
@@ -91,7 +98,7 @@ void Story::inventoryMenu(StoryIO io){
     //io << "2. Use consumable" << io.endl;
     io << "2. Back" << io.endl;
 
-    int input = io.getDigit(3);
+    int input = io.getDigit(2);
 
     if(input == 1){
         io << "Enter the index of the weapon you want to equip." << io.endl;
@@ -101,10 +108,12 @@ void Story::inventoryMenu(StoryIO io){
             player->setWeapon(wep);
         }else{
             io << "Invalid item." << io.endl;
-            inventoryMenu(io);
         }
-
+    }else
+    if(input ==2){
+        break;
     }
+    }while (true);
 }
 
 
@@ -157,12 +166,14 @@ void Story::moveMenu(StoryIO io){
 }
 
 void Story::StartGameMenu(StoryIO io) {
+    do{
     io << this->storyName << io.endl;
     io << "1. New game" << io.endl;
     io << "2. Load game" << io.endl;
     io << "3. Options" << io.endl;
+    io << "4. Quit" << io.endl;
 
-    int input = io.getDigit(3);
+    int input = io.getDigit(4);
 
     if (input == 1) {
         Player* plr = this->playerCreation(io);
@@ -184,9 +195,16 @@ void Story::StartGameMenu(StoryIO io) {
     if (input == 3) {
         OptionsMenu(io);
     }
+
+    if (input == 4) {
+        break;
+    }
+
+    }while(true);
 }
 
 void Story::OptionsMenu(StoryIO io) {
+    do{
     io << "Options: " << io.endl;
     io << "1. Change difficulty" << io.endl;
     io << "2. Instructions" << io.endl;
@@ -201,15 +219,20 @@ void Story::OptionsMenu(StoryIO io) {
     if (input == 2) {
         io << "You're investigating a monster infested Asylum, but you may've bitten off more than you can chew... \n\
         Navigate the Asylum and defeat monsters to find out what happened and escape!'" << io.endl;
+        //this->OptionsMenu(io);
     }
 
     if (input == 3) {
-        StartGameMenu(io);
+        break;
+        //StartGameMenu(io);
         //This will bring players back to the start menu
     }
+    }while(true);
+    
 }
 
 void Story::DifficultyMenu(StoryIO io) {
+    do{
     io << "Change Difficulty" << io.endl;
     io << "1. Easy mode" << io.endl;
     io << "2. Normal mode" << io.endl;
@@ -231,15 +254,17 @@ void Story::DifficultyMenu(StoryIO io) {
     }
 
     if (input == 4) {
-        OptionsMenu(io);
+        break;
+        //OptionsMenu(io);
         //This will bring the player back to the options menu
     }
+    }while(true);
 }
 
 void Story::attackLoop(StoryIO io ,Enemy* enemy, int lastRoomX, int lastRoomY){
     io << "------------------------------------------" << io.endl;
     io << "You've encountered an enemy!" << io.endl;
-    io << "It hisses at you...and its eyes ready to attack!" << io.endl;
+    io << "It's a "<<enemy->getName()<<"!" << io.endl;
 
     
     do{
@@ -257,7 +282,7 @@ void Story::attackLoop(StoryIO io ,Enemy* enemy, int lastRoomX, int lastRoomY){
                 io << "You killed the enemy with " << (player->getWeapon())->getDamage() << " damage points." << io.endl;
                 io << "You smile in victory." << io.endl;
             }else if (enemy->getHealth() >= 0){
-                io << "Using your equipped weapon, you did " << (player->getWeapon())->getDamage() << " damage to the enemy!" << io.endl;
+                io << "Using your equipped weapon, you did " << (player->getWeapon())->getDamage() << " damage to the "<<enemy->getName()<<"!" << io.endl;
                 io << "The enemy has " << enemy->getHealth() << " health points left." << io.endl;
                 io << "The enemy damaged you for " << enemy->getBaseDamage() << " points." << io.endl;
                 io << "You have " << player->getHealth() << " health points left." << io.endl;
@@ -332,5 +357,14 @@ Player* Story::playerCreation(StoryIO io) {
         Container* newContainer = new Container(contents, "Inventory", 5);
         Player* EMT = new Player(name, 100, 15, newContainer);
         return EMT;
+    }
+}
+
+Story::~Story(){
+    if(this->player != nullptr){
+        delete this->player;
+    }
+    if(this->level != nullptr){
+        delete this->level;
     }
 }
