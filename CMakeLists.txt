@@ -18,7 +18,15 @@ include_directories(
 
 
 
-add_executable(runAllTests
+target_link_libraries(runAllTests gmock gtest gtest_main)
+
+  ./src/Entity.cpp
+  ./src/Enemy.cpp
+  ./src/Rat.cpp
+  ./src/Spider.cpp
+  ./src/Zombie.cpp
+  ./tests/testEnemy.cpp
+
   ./src/Container.cpp  
   ./tests/testContainer.cpp
   
@@ -39,8 +47,6 @@ add_executable(runAllTests
   ./src/Room.cpp
   ./src/lockedRoom.cpp
   
-  ./src/Entity.cpp
-  ./src/Enemy.cpp
   ./src/Player.cpp
   ./src/Container.cpp
   ./tests/testPlayer.cpp
