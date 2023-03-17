@@ -21,6 +21,12 @@ include_directories(
 add_executable(runAllTests
   ./src/StoryIO.cpp
   ./tests/testStoryIO.cpp
+  
+  ./tests/itemTests.cpp
+  ./src/Key.cpp
+  ./src/Weapon.cpp
+  ./src/Item.cpp
+  ./src/Consumable.cpp
 
   ./tests/testStory.cpp
   ./src/Story.cpp
