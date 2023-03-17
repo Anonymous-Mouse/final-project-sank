@@ -19,10 +19,36 @@ include_directories(
 
 
 add_executable(runAllTests
+  ./src/Container.cpp  
+  ./tests/testContainer.cpp
+  
+  ./src/Level.cpp 
+  ./tests/testLevel.cpp
+
+  ./tests/itemTests.cpp
+  ./src/Key.cpp
+  ./src/Weapon.cpp
+  ./src/Item.cpp
+  ./src/Consumable.cpp
+
+
   ./src/StoryIO.cpp
   ./tests/testStoryIO.cpp
+
+  ./tests/roomTests.cpp
+  ./src/Room.cpp
+  ./src/lockedRoom.cpp
+  
+  ./src/Entity.cpp
+  ./src/Enemy.cpp
+  ./src/Player.cpp
+  ./src/Container.cpp
+  ./tests/testPlayer.cpp
+
+  
   ./tests/testStory.cpp
   ./src/Story.cpp
+
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)

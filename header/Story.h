@@ -8,6 +8,8 @@ class Story {
         void Menu();
         void OptionsMenu(StoryIO);
         void DifficultyMenu(StoryIO);
+        void playerCreation(StoryIO);
+        void Menu();
 };
 
 #endif
