@@ -29,7 +29,7 @@ class Player : public Entity {
 
         }
         
-        ~Player(){}
+        ~Player();
         int getBaseDamage();
         void damageEntity(Entity* enemyTarget);
         bool addEffect(StatusEffect effect);

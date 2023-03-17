@@ -72,3 +72,6 @@ int Player::getLocationY() {
     return location.at(1);
 }
 
+Player::~Player(){
+    delete this->inventory;
+}
