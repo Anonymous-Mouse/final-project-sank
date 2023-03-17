@@ -73,7 +73,8 @@ void Story::OptionsMenu(StoryIO io) {
     }
 
     if (input == 2) {
-        //This should display the instructions to the game
+        io << "You're investigating a monster infested Asylum, but you may've bitten off more than you can chew... \n\
+        Navigate the Asylum and defeat monsters to find out what happened and escape!'"
     }
 
     if (input == 3) {
