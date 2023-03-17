@@ -38,3 +38,7 @@ ItemTypes Weapon::getType(){
 std::string Weapon::getTypeString(){
     return "Weapon";
 }
+
+std::string Weapon::getDescription(){
+    return getTypeString() + " - Name: " + getName() + " - Damage:  " + std::to_string(this->getDamage()) + " - Durability: " + std::to_string(this->getDurability());
+}

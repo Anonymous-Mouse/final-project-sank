@@ -51,6 +51,6 @@ std::string Consumable::getTypeString(){
     return "Consumable";
 }
 
-std::string Item::getDescription(){
-    return getTypeString() + " - Name: " + this->getName() + " - Usage: " + this->getUsageString() + " - Effect: " + getEffectString();
+std::string Consumable::getDescription(){
+    return this->getTypeString() + " - Name: " + this->getName() + " - Usage: " + this->getUsageString() + " - Effect: " + this->getEffectString();
  }

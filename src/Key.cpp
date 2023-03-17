@@ -16,7 +16,7 @@ std::string Key::getTypeString(){
     return "Key";
 }
 
-std::string Item::getDescription(){
+std::string Key::getDescription(){
     return this->getTypeString() + " - Name: " + this->getName();
  }
 
