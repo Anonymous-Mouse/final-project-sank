@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-std::vector<Item> fakeItems;
+std::vector<Item*> fakeItems{};
 class stubContainer: public Container{
     public:
     stubContainer(): Container(fakeItems, std::string("test"), 0){};
