@@ -16,3 +16,7 @@ Item::Item(string Name){
 bool Item::use(Entity*){
     return false;
 }
+
+virtual ItemTypes getType(){
+    return ItemTypes::Item;
+}

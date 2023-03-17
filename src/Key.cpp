@@ -7,5 +7,8 @@ bool Key::use(Entity*){
     return false;
 }
 
+ItemTypes Key::getType(){
+    return ItemTypes::Key;
+}
 
 Key::Key(std::string Name): Item(Name){}

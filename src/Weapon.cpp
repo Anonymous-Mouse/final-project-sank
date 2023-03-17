@@ -31,3 +31,6 @@ Weapon::Weapon(std::string Name, int damage, int durability): Item(Name){
 }
 
 
+ItemTypes Weapon::getType(){
+    return ItemTypes::Weapon;
+}

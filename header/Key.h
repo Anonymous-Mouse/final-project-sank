@@ -9,6 +9,8 @@ class Key: public Item{
     public:
         bool use(Entity*) override;
 
+        ItemTypes getType() override;
+
         Key(std::string Name);
 };
 
