@@ -27,6 +27,9 @@ add_executable(runAllTests
   
   ./src/Level.cpp 
   ./tests/testLevel.cpp
+  
+  ./src/Container.cpp  
+  ./tests/testContainer.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)
