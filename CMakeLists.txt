@@ -42,6 +42,13 @@ add_executable(runAllTests
   ./tests/roomTests.cpp
   ./src/Room.cpp
   ./src/lockedRoom.cpp
+
+  ./src/Enemy.cpp
+  ./src/Rat.cpp
+  ./src/Spider.cpp
+  ./src/Zombie.cpp
+  ./tests/testEnemy.cpp
+
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)
