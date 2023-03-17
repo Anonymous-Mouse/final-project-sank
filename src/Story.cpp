@@ -59,8 +59,10 @@ void Story::gameCycle(StoryIO io){
             int newPosY = this->player->getLocationY();
             if(!this->level->isRoomExplored(newPosX,newPosY)){
                 Room* newRoom = this->level->getRoomAt(newPosX, newPosY);
+                io << "get room" << io.endl;
                 if(newRoom->rollEnemySpawn()){
-                    this->attackLoop(&(newRoom->getEnemy()),plrX,plrY);
+                    io << "roll spawn" << io.endl;
+                    this->attackLoop(io, &(newRoom->getEnemy()),plrX,plrY);
                 }
             }
 
@@ -74,10 +76,34 @@ void Story::gameCycle(StoryIO io){
 
 void Story::inventoryMenu(StoryIO io){
     io << "Your inventory: " << player->getInventory()->getContentsAmount() << "/" << player->getInventory()->getMaxItems() << io.endl;
+    //io << player->getInventory()->getContentsAmount() << io.endl;
+    Weapon* equippedWeapon = this->player->getWeapon();
     for(int i = 0; i<player->getInventory()->getContentsAmount(); ++i){
         Item* item = player->getInventory()->getItemIndex(i);
-        io << "[" << i << "] " << item->getDescription();
+        io << "[" << i << "] ";
+        if(item == equippedWeapon){
+            io << "EQUIPPED - ";
+        }
+        io << item->getDescription();
         io << io.endl;
+    }
+    io << "1. Equip different weapon" << io.endl;
+    //io << "2. Use consumable" << io.endl;
+    io << "2. Back" << io.endl;
+
+    int input = io.getDigit(3);
+
+    if(input == 1){
+        io << "Enter the index of the weapon you want to equip." << io.endl;
+        int weaponIndex = io.getDigit(player->getInventory()->getContentsAmount());
+        if(player->getInventory()->getItemIndex(weaponIndex)->getType()==ItemTypes::WEAPON){
+            Weapon* wep = dynamic_cast<Weapon*>(player->getInventory()->getItemIndex(weaponIndex));
+            player->setWeapon(wep);
+        }else{
+            io << "Invalid item." << io.endl;
+            inventoryMenu(io);
+        }
+
     }
 }
 
@@ -99,12 +125,12 @@ void Story::moveMenu(StoryIO io){
     }
 
     //East
-    if(this->level->isThereRoom(plrX,plrY-1)){
+    if(this->level->isThereRoom(plrX,plrY+1)){
         io << "3. East" << io.endl;
     }
 
     //West
-    if(this->level->isThereRoom(plrX,plrY+1)){
+    if(this->level->isThereRoom(plrX,plrY-1)){
         io << "4. West" << io.endl;
     }
 
@@ -116,10 +142,10 @@ void Story::moveMenu(StoryIO io){
         this->player->movePlayer(plrX-1,plrY);
     }else if(input == 2 && this->level->isThereRoom(plrX+1,plrY)){
         this->player->movePlayer(plrX+1,plrY);
-    }else if(input == 3 && this->level->isThereRoom(plrX,plrY-1)){
-        this->player->movePlayer(plrX,plrY-1);
-    }else if(input == 4 && this->level->isThereRoom(plrX,plrY+1)){
+    }else if(input == 3 && this->level->isThereRoom(plrX,plrY+1)){
         this->player->movePlayer(plrX,plrY+1);
+    }else if(input == 4 && this->level->isThereRoom(plrX,plrY-1)){
+        this->player->movePlayer(plrX,plrY-1);
     }else if(input == 5){
         return;
     }else{
@@ -140,6 +166,8 @@ void Story::StartGameMenu(StoryIO io) {
 
     if (input == 1) {
         Player* plr = this->playerCreation(io);
+        Weapon* wep = dynamic_cast<Weapon*>(plr->getInventory()->getItemIndex(0));
+        plr->setWeapon(wep);
         int xPos = this->level->getStartRoom().at(0);
         int yPos = this->level->getStartRoom().at(1);
         plr->movePlayer(xPos,yPos);
@@ -208,17 +236,18 @@ void Story::DifficultyMenu(StoryIO io) {
     }
 }
 
-void Story::attackLoop(Enemy* enemy, int lastRoomX, int lastRoomY){
+void Story::attackLoop(StoryIO io ,Enemy* enemy, int lastRoomX, int lastRoomY){
     io << "------------------------------------------" << io.endl;
     io << "You've encountered an enemy!" << io.endl;
     io << "It hisses at you...and its eyes ready to attack!" << io.endl;
 
-    int input = io.getDigit(3);
+    
     do{
         io << "What is your next choice?" << io.endl;
         io << "1. Attack" << io.endl;
         io << "2. Run Away" << io.endl;
-        io << "3. Use your Consumables" << io.endl;
+        //io << "3. Use your Consumables" << io.endl;
+        int input = io.getDigit(2);
         if(input == 1){ //attack
 
             player->damageEntity(enemy);
@@ -297,8 +326,9 @@ Player* Story::playerCreation(StoryIO io) {
         Player* Scavenger = new Player(name, 100, 20, newContainer);
         return Scavenger;
     }else if (input == 3) { //creates a Plaer object named EMT
-        Consumable* medkit = new Consumable("Medkit", Heal, self);
-        vector<Item*> contents = {medkit};
+        Consumable* medkit = new Consumable("Medkit", Heal, UsageType::self);
+        Weapon* scalpel = new Weapon("Scalpel", 15, 14);
+        vector<Item*> contents = {scalpel, medkit};
         Container* newContainer = new Container(contents, "Inventory", 5);
         Player* EMT = new Player(name, 100, 15, newContainer);
         return EMT;

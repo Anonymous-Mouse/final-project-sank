@@ -28,7 +28,7 @@ class Story{
     public:
         void setPlayer(Player*);
         void start(StoryIO);
-        void attackLoop(Enemy* enemy, int lastRoomX, int lastRoomY);
+        void attackLoop(StoryIO io,Enemy* enemy, int lastRoomX, int lastRoomY);
        // std::vector<std::vector<Room*>> getRoomsAdjacentToPlayer();
 
         Story(std::string storyName, Level* level);

@@ -2,6 +2,8 @@
 #include "../header/Level.h"
 #include "../header/Room.h"
 #include "../header/Item.h"
+#include "../header/Enemy.h"
+
 
 #include <vector>
 #include <string>
@@ -10,13 +12,14 @@
 using namespace std;
 
 int main(){
+Enemy* giantRat = new Enemy("Giant Rat", 45, 15, 13, 1);
 
 vector<vector<Room*>> Asylum = {
    { nullptr,           nullptr,            new Room("Exit"),       nullptr},
    { nullptr,           new Room("Hallway"), new Room("Reception"),       new Room("Broom Closet")},
    { nullptr,           new Room("Hallway"),        nullptr,          nullptr},
    { new Room("Cell2"), new Room("Hallway"),        nullptr,          nullptr},
-   {    nullptr,        new Room("Hallway"), new Room("Hallway"),     nullptr},
+   {    nullptr,        new Room("Hallway", giantRat, 100), new Room("Hallway"),     nullptr},
    {    nullptr,          nullptr,           new Room("Cell"),         nullptr}
 
 };
