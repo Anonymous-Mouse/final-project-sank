@@ -43,7 +43,7 @@ string Level::generateMap(int playerX, int playerY) {
     string map = "";
     for (int i = 0; i < mapSize[0]; i++) {
         for (int j = 0; j < mapSize[1]; j++) {
-            if (i == playerX && j = playerY) {
+            if (i == playerX && j == playerY) {
                 map += "P ";
             }
             else if (isThereRoom(i, j)) {
@@ -51,7 +51,7 @@ string Level::generateMap(int playerX, int playerY) {
                     map += "X ";
                 }
                 else {
-                    map += "- "
+                    map += "- ";
                 }
             }
             else {
@@ -65,7 +65,12 @@ string Level::generateMap(int playerX, int playerY) {
 
 void Level::setRoom(int x, int y, Room* room) {
     if(x < roomVector.size() && y < roomVector[x].size()) {
-        this->rommVector[x][y] = *room;
+        if (room != nullptr) {
+            this->roomVector[x][y] = *room;
+        }
+        else {
+            this->roomVector[x][y] = Room();
+        }
     }
     else {
         assert(false && "Invalid coordinates");
