@@ -21,8 +21,12 @@ include_directories(
 add_executable(runAllTests
   ./src/StoryIO.cpp
   ./tests/testStoryIO.cpp
+
   ./tests/testStory.cpp
   ./src/Story.cpp
+  
+  ./src/Level.cpp 
+  ./tests/testLevel.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)
