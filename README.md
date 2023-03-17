@@ -45,7 +45,7 @@ Description:
 This diagram shows a tentative outline of the classes we will use for the project. 
  - A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. 
    - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms.
-   - The story class will make use of StoryIO, an abstraction for input/output which provides input validation and can take any istream or ostream as parameters. (cin, cout, isstream, osstream)
+   - The story class will make use of StoryIO, an abstraction for input/output which provides input validation but can also be overridden for testing the story class.
  - The level will hold all the Rooms and keep track of the rooms the player has been in as well as the difficulty of the story. 
  - A room can have an entity, container, or both. 
    - The story should not allow the container to be opened or the player to move to different room unless the enemy is dead or is not there. 
