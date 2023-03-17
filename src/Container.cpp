@@ -56,3 +56,11 @@ void Container::removeItemIndex(int index) {
 string Container::getName() {
     return name;
 }
+
+Container::~Container(){
+    for(int i = 0; i<this->contents.size(); ++i){
+        if(this->contents.at(i) != nullptr){
+            delete this->contents.at(i);
+        }
+    }
+}

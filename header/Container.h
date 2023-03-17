@@ -23,6 +23,7 @@ public:
     Item* getItemIndex(int index);
     void removeItemIndex(int index);
     string getName();
+    ~Container();
     
 };
 #endif
