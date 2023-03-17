@@ -50,7 +50,7 @@ add_executable(runAllTests
   ./tests/testEnemy.cpp
   
   ./src/Player.cpp
-  ./tests/testPlayerClass.cpp
+  ./tests/testPlayer.cpp
 
 )
 
