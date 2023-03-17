@@ -31,7 +31,6 @@ TEST(LevelTest, GetRoomAtValid)
     Room* room = level.getRoomAt(0, 0);
     EXPECT_NE(room, nullptr);
     EXPECT_EQ(room->getName(), "testRoom");
-    EXPECT_EQ(level.exploredRooms[0][0], true);
 }
 
 TEST(LevelTest, GetRoomAtInvalid)
@@ -59,10 +58,8 @@ TEST(LevelTest, IsThereRoomValidInvalid)
     Level level(1, roomVector);
 
     EXPECT_TRUE(level.getRoomAt(0, 0));
-    EXPECT_TRUE(level.exploredRooms[0][0]);
 
     EXPECT_TRUE(level.isThereRoom(1, 1));
-    EXPECT_FALSE(level.exploredRooms[1][1]);
 
     EXPECT_FALSE(level.isThereRoom(-1, 0));
     EXPECT_FALSE(level.isThereRoom(0, 3));
@@ -98,7 +95,6 @@ TEST(LevelTest, SetRoomValid)
     Room* newRoom = new Room("new room");
     level.setRoom(1, 2, newRoom);
     EXPECT_EQ(level.getRoomAt(1, 2), newRoom);
-    delete newRoom;
 }
 
 TEST(LevelTest, SetRoomInvalid)

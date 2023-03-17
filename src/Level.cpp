@@ -92,3 +92,13 @@ void Level::setRoom(int x, int y, Room* room) {
         assert(false && "Invalid coordinates");
     }
 }
+
+Level::~Level(){
+    for(int i = 0; i<this->roomVector.size(); ++i){
+         for(int j = 0; j<this->roomVector.at(i).size(); ++j){
+            if(roomVector.at(i).at(j) != nullptr){
+                delete roomVector.at(i).at(j);
+            }
+         }
+    }
+}
