@@ -41,7 +41,7 @@ Description:
 
 
 ## Class Diagram
-![UML Diagram drawio-update story](https://user-images.githubusercontent.com/28524112/225495430-3f0815bd-4b44-4bca-8f0c-185dedd4e58a.png)
+![UML Diagram drawio 3-17png](https://user-images.githubusercontent.com/28524112/226045908-04b9d696-48f7-45be-a3ce-a8a8caf4bdda.png)
 This diagram shows a tentative outline of the classes we will use for the project. 
  - A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. 
    - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms.
