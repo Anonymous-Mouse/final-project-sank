@@ -13,16 +13,21 @@ private:
 
     int difficulty;
     vector<int> mapSize;
+    vector<int> startRoom;
 
 public:
 
     vector<vector<bool>> exploredRooms;
 
-    Level(int difficulty, vector<vector<Room*>> roomVector);
+    Level(int difficulty, vector<vector<Room*>> roomVector, vector<int> startRoom = {0,0});
     int getDifficulty();
+    void setDifficulty(int);
     Room* getRoomAt(int, int);
     bool isThereRoom(int, int);
     string generateMap(int, int);
     void setRoom(int, int, Room*);
+    vector<int> getStartRoom();
+    bool isRoomExplored(int x, int y);
+    void markRoomExplored(int x, int y);
 };
 #endif
