@@ -38,6 +38,13 @@ Container& Room::getChest(){
     return *(this->container);
 }
 
+bool Room::isThereLore(){
+    return this->hasLore;
+}
+std::string Room::getLore(){
+    return this->lore;
+}
+
 
 /*Room::Room(std::string Name){
     this->EnemySpawnChance = 0;
@@ -46,7 +53,7 @@ Container& Room::getChest(){
     this->Name = Name;
 }*/
 
-Room::Room(std::string Name, Enemy* enemy, int EnemySpawnChance , Container* container){
+Room::Room(std::string Name, Enemy* enemy, int EnemySpawnChance , Container* container, std::string lore){
     this->Name = Name;
     if(enemy != nullptr){
         this->enemy = enemy;
@@ -64,6 +71,14 @@ Room::Room(std::string Name, Enemy* enemy, int EnemySpawnChance , Container* con
     }else{
         this->container = nullptr;
         this->chestExists = false;
+    }
+
+    this->lore = lore;
+
+    if(lore.length() < 1){
+        this->hasLore = false;
+    }else{
+        this->hasLore = true;
     }
 }
 

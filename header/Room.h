@@ -13,6 +13,8 @@ class Room{
     int EnemySpawnChance;
     bool enemyAlive;
     bool chestExists;
+    std::string lore;
+    bool hasLore;
 
     public:
     bool rollEnemySpawn();
@@ -22,10 +24,13 @@ class Room{
     virtual bool isLocked();
     Enemy& getEnemy();
     Container& getChest();
+    bool isThereLore();
+    std::string getLore();
 
-    Room(std::string Name, Enemy* enemy = nullptr, int EnemySpawnChance = 0, Container* container = nullptr);
+
+    Room(std::string Name, Enemy* enemy = nullptr, int EnemySpawnChance = 0, Container* container = nullptr, std::string lore = "");
     // Room(std::string Name);
-
+    
     ~Room();
     
 };
