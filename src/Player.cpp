@@ -27,6 +27,10 @@ bool Player::addEffect(StatusEffect effect){
 
 }
 
+Container* Player::getInventory(){
+    return this->inventory;
+}
+
 bool Player::removeEffect(StatusEffect effect){
     
     if(this->Effects.empty()){

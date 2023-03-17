@@ -39,6 +39,7 @@ class Player : public Entity {
         void movePlayer(int x, int y);
         int getLocationX();
         int getLocationY();
+        Container* getInventory();
 
 };
 
