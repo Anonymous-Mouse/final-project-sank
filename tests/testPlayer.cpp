@@ -145,8 +145,16 @@ TEST(PlayerTests, testMovePlayer) {
     vector<Item*> contents = {};
     Container* newContainer = new Container(contents,"inv",5,"ABCD");
     Player* player = new Player("Nick",100,25,newContainer);
-    //vector<int> location(2);
-    player->movePlayer(2,2);
-    EXPECT_EQ(player->getLocationX(), 2);
-    EXPECT_EQ(player->getLocationY(), 2);
+    player->movePlayer(1,1);
+    EXPECT_EQ(player->getLocationX(), 1);
+    EXPECT_EQ(player->getLocationY(), 1);
+}
+
+TEST(PlayerTests, testMovePlayer2) {
+    vector<Item*> contents = {};
+    Container* newContainer = new Container(contents,"inv",5,"ABCD");
+    Player* player = new Player("Nick",100,25,newContainer);
+    player->movePlayer(5,7);
+    EXPECT_EQ(player->getLocationX(), 5);
+    EXPECT_EQ(player->getLocationY(), 7);
 }

@@ -19,7 +19,8 @@ class Story{
         void Menu();
         void OptionsMenu(StoryIO);
         void DifficultyMenu(StoryIO);
-
+        void playerCreation(StoryIO);
+        
     public:
         void setPlayer(Player*);
         void start();
