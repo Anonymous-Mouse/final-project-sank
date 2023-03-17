@@ -36,6 +36,10 @@ int Container::getContentsAmount() {
     return contents.size();
 }
 
+int Container::getMaxItems(){
+    return this->maxItems;
+}
+
 Item* Container::getItemIndex(int index) {
     if (index < contents.size()) {
         return contents[index];
