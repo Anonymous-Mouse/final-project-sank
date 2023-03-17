@@ -234,7 +234,7 @@ void Story::attackLoop(Enemy* enemy, int lastRoomX, int lastRoomY){
                 return;
             }
             else{
-                io << "You did failed your escape attempt..." << io.endl;
+                io << "You failed your escape attempt..." << io.endl;
             }
         }else if(input == 3){//use consumable
             //use(player)
