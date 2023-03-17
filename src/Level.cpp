@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Level::Level(int difficulty, vector<vector<Room*>> roomVector) {
+Level::Level(int difficulty, vector<vector<Room*>> roomVector, vector<int> startRoom) {
     this->difficulty = difficulty;
     this->roomVector = roomVector;
     this->exploredRooms.resize(roomVector.size());
@@ -17,17 +17,38 @@ Level::Level(int difficulty, vector<vector<Room*>> roomVector) {
     }
     this->mapSize.push_back(roomVector.size());
     this->mapSize.push_back(roomVector[0].size());
+    this->startRoom = startRoom;
+}
+
+vector<int> Level::getStartRoom(){
+    return this->startRoom;
 }
 
 int Level::getDifficulty() {
     return this->difficulty;
 }
 
+void Level::setDifficulty(int difficulty){
+    this->difficulty = difficulty; 
+}
+
 Room* Level::getRoomAt(int x, int y) {
     assert(isThereRoom(x, y) && "Invalid coordinates");
-
-    this->exploredRooms[x][y] = true;
     return this->roomVector[x][y];
+}
+
+bool Level::isRoomExplored(int x, int y){
+    assert(isThereRoom(x, y) && "Invalid coordinates");
+    if(this->exploredRooms[x][y]){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+void Level::markRoomExplored(int x, int y){
+    assert(isThereRoom(x, y) && "Invalid coordinates");
+    this->exploredRooms[x][y] = true;
 }
 
 bool Level::isThereRoom(int x, int y) {
