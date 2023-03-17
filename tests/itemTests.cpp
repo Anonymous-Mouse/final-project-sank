@@ -3,6 +3,7 @@
 #include "../header/Key.h"
 #include "../header/Weapon.h"
 #include "../header/Consumable.h"
+#include "../header/Entity.h"
 #include <iostream>
 
 class MockItem: public Item{
@@ -69,10 +70,10 @@ TEST(Weapon, lowerDurabilityAtZero){
 }
 
 TEST(Weapon, use){
-    MockEntity entity("testEntity", 100);
+    MockEntity* entity = new MockEntity("testEntity", 100);
     Weapon weapon("testWeapon", 15, 0);
-    EXPECT_TRUE(weapon.use(&entity));
-    EXPECT_EQ(weapon.getDamage(), 100-entity.getHealth());
+    EXPECT_TRUE(weapon.use(entity));
+    EXPECT_EQ(weapon.getDamage(), 100-entity->getHealth());
 }
 
 TEST(Key, Construct){
@@ -81,8 +82,8 @@ TEST(Key, Construct){
 
 TEST(Key, use){
     Key key("testKey");
-    MockEntity entity("testEntity", 100);
-    EXPECT_DEATH(key.use(&entity), "Key should not be used this way.");
+    Entity* entity = new MockEntity("testEntity", 100);
+    EXPECT_DEATH(key.use(entity), "Key should not be used this way.");
 }
 
 TEST(Consumable, Construct){
@@ -111,14 +112,59 @@ TEST(Consumable, getUsageEnemy){
 
 TEST(Consumable, useReduceBaseDamage){
     Consumable consumable("testConsumable", StatusEffect::ReduceBaseDamage, UsageType::enemy);
-    MockEntity entity("testEntity", 100);
-    EXPECT_TRUE(consumable.use(&entity));
-    EXPECT_EQ(entity.getEffects().at(0), StatusEffect::ReduceBaseDamage);
+    MockEntity* entity = new MockEntity("testEntity", 100);
+    EXPECT_TRUE(consumable.use(entity));
+    EXPECT_EQ(entity->getEffects().at(0), StatusEffect::ReduceBaseDamage);
 }
 
 TEST(Consumable, ReduceMaxHealth){
     Consumable consumable("testConsumable", StatusEffect::ReduceMaxHealth, UsageType::enemy);
-    MockEntity entity("testEntity", 100);
-    EXPECT_TRUE(consumable.use(&entity));
-    EXPECT_EQ(entity.getEffects().at(0), StatusEffect::ReduceMaxHealth);
+    MockEntity* entity = new MockEntity("testEntity", 100);
+    EXPECT_TRUE(consumable.use(entity));
+    EXPECT_EQ(entity->getEffects().at(0), StatusEffect::ReduceMaxHealth);
+}
+
+TEST(Consumable, getEffectStringReduceMaxHealth){
+    Consumable consumable("testConsumable", StatusEffect::ReduceMaxHealth, UsageType::enemy);
+    EXPECT_EQ(consumable.getEffectString(), "Reduce Max Health");
+}
+TEST(Consumable, getEffectStringHeal){
+    Consumable consumable("testConsumable", StatusEffect::Heal, UsageType::enemy);
+    EXPECT_EQ(consumable.getEffectString(), "Heal");
+}
+
+TEST(Consumable, getEffectStringSlow){
+    Consumable consumable("testConsumable", StatusEffect::Slow, UsageType::enemy);
+    EXPECT_EQ(consumable.getEffectString(), "Slow");
+}
+
+TEST(Consumable, getEffectStringReduceBaseDamage){
+    Consumable consumable("testConsumable", StatusEffect::ReduceBaseDamage, UsageType::enemy);
+    EXPECT_EQ(consumable.getEffectString(), "Reduce Base Damage");
+}
+
+TEST(Consumable, getType){
+    Consumable consumable("testConsumable", StatusEffect::ReduceBaseDamage, UsageType::enemy);
+    EXPECT_EQ(consumable.getType(), ItemTypes::CONSUMABLE);
+}
+
+TEST(Consumable, getTypeString){
+    Consumable consumable("testConsumable", StatusEffect::ReduceBaseDamage, UsageType::enemy);
+    EXPECT_EQ(consumable.getTypeString(), "Consumable");
+}
+
+TEST(Consumable, getDescription){
+    Consumable consumable("testConsumable", StatusEffect::ReduceBaseDamage, UsageType::enemy);
+    EXPECT_EQ(consumable.getDescription(), "Consumable - Name: testConsumable - Usage: Enemy - Effect: Reduce Base Damage");
+}
+
+
+TEST(Consumable, getUsageStringSelf){
+    Consumable consumable("testConsumable", StatusEffect::ReduceBaseDamage, UsageType::self);
+    EXPECT_EQ(consumable.getUsageString(),"Self");
+}
+
+TEST(Consumable, getUsageStringEnemy){
+    Consumable consumable("testConsumable", StatusEffect::ReduceBaseDamage, UsageType::enemy);
+    EXPECT_EQ(consumable.getUsageString(),"Enemy");
 }
