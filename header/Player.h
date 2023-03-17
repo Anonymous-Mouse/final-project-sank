@@ -25,6 +25,7 @@ class Player : public Entity {
         Player(string name, int health, int baseDamage, Container* inventory) : Entity(name, health) {
             this->BaseDamage = baseDamage;
             this->inventory = inventory;
+            this->location = vector<int>(2);
 
         }
         
