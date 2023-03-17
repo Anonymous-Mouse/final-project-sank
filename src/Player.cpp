@@ -13,8 +13,18 @@ void Player::damageEntity(Entity* enemyTarget) {
 }
 
 bool Player::addEffect(StatusEffect effect){
-    this->Effects.push_back(effect);
-    return true;
+    if(effect != StatusEffect::Heal){
+        this->setHealth(this->getHealth() + 15);
+        return true;
+    }else{
+        auto it = find(Effects.begin(), Effects.end(), effect);
+        if(it == Effects.end()){
+            this->Effects.push_back(effect);
+        }
+        
+    }
+    
+
 }
 
 bool Player::removeEffect(StatusEffect effect){
