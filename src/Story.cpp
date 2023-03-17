@@ -51,7 +51,7 @@ void Story::gameCycle(StoryIO io){
         if (input == 1)
         {
             io << this->level->generateMap(plrX, plrY) << io.endl;
-        }
+        }else
         if (input == 2)
         {
             this->moveMenu(io);
@@ -64,10 +64,34 @@ void Story::gameCycle(StoryIO io){
                 }
             }
 
+        }else
+        if(input == 3 ){
+            inventoryMenu(io);
         }
 
     }while(loopCycle == true);
 }
+
+void Story::inventoryMenu(StoryIO io){
+    io << "Your inventory: " << player->getInventory()->getContentsAmount() << "/" << player->getInventory()->getMaxItems() << io.endl;
+    for(int i = 0; i<player->getInventory()->getContentsAmount(); ++i){
+        Item* item = player->getInventory()->getItemIndex(i);
+        io << "[" << i << "] "
+        switch(item->getType()){
+            case ItemTypes::KEY:
+                io << "Key: " << item->getName() << io.endl;
+                break;
+            case ItemTypes::WEAPONS:
+                io << "Weapon: " << item->getName() << " Damage: " << item<-getDamage <<" Durability: " <<  item<-getDurability << io.endl;
+                break;
+            case ItemTypes::CONSUMABLE:
+                io << "Weapon: " << item->getName() << " Damage: " << item<-getDamage <<" Durability: " <<  item<-getDurability << io.endl;
+                break;
+        }
+         << io.endl;
+    }
+}
+
 
 void Story::moveMenu(StoryIO io){
     int plrX = this->player->getLocationX();

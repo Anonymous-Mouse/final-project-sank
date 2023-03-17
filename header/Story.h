@@ -23,6 +23,7 @@ class Story{
         Player* playerCreation(StoryIO);
         void gameCycle(StoryIO);
         void moveMenu(StoryIO io);
+        void inventoryMenu(StoryIO io);
         
     public:
         void setPlayer(Player*);
