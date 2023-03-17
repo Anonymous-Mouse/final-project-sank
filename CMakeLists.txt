@@ -29,13 +29,18 @@ add_executable(runAllTests
 
   ./src/StoryIO.cpp
   ./tests/testStoryIO.cpp
+
+  ./tests/roomTests.cpp
+  ./src/Room.cpp
+  ./src/lockedRoom.cpp
   
   ./src/Entity.cpp
   ./src/Enemy.cpp
   ./src/Player.cpp
   ./src/Container.cpp
   ./tests/testPlayer.cpp
-  ./src/Room.cpp
+
+  
   ./tests/testStory.cpp
   ./src/Story.cpp
 
