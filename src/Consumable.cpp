@@ -19,3 +19,7 @@ Consumable::Consumable(std::string Name, StatusEffect effect, UsageType usage): 
     this->effect = effect;
     this->usage = usage;
 }
+
+ItemTypes Consumable::getType(){
+    return ItemTypes::Consumable;
+}

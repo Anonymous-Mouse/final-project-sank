@@ -19,7 +19,7 @@ class Weapon: public Item{
         void lowerDurability();
 
         bool use(Entity*) override;
-
+        ItemTypes getType() override;
         Weapon(std::string Name, int damage, int durability);
     
 
