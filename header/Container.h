@@ -19,6 +19,7 @@ public:
     bool isLocked();
     bool unlock(string password);
     int getContentsAmount();
+    int getMaxItems();
     Item* getItemIndex(int index);
     void removeItemIndex(int index);
     string getName();
