@@ -28,7 +28,6 @@ add_executable(runAllTests
   ./src/Item.cpp
   ./src/Consumable.cpp
 
-  ./tests/testStory.cpp
   ./src/Story.cpp
   
   ./src/Level.cpp 
@@ -51,6 +50,36 @@ add_executable(runAllTests
   
   ./src/Player.cpp
   ./tests/testPlayer.cpp
+
+)
+
+add_executable(playGame
+  ./src/StoryIO.cpp
+
+  ./src/Key.cpp
+  ./src/Weapon.cpp
+  ./src/Item.cpp
+  ./src/Consumable.cpp
+
+  ./src/Story.cpp
+  
+  ./src/Level.cpp 
+
+  ./src/Container.cpp  
+
+  ./src/Entity.cpp
+  
+  ./src/Room.cpp
+  ./src/lockedRoom.cpp
+
+  ./src/Enemy.cpp
+  ./src/Rat.cpp
+  ./src/Spider.cpp
+  ./src/Zombie.cpp
+  
+  ./src/Player.cpp
+
+  ./main.cpp
 
 )
 

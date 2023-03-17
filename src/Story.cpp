@@ -12,14 +12,15 @@
 void Story::setPlayer(Player* player){
     this->player = player;
 }
-Story::Story(std::string storyName, Level* level, StoryIO io){
-    this->storyName = storyName;
+
+Story::Story(std::string Name, Level* level){
+    this->storyName = Name;
     this->level = level;
-    this->io = io;
+
 }
 
-void Story::start(){
-    this->StartGameMenu(this->io)
+void Story::start(StoryIO io){
+    this->StartGameMenu(io);
 }
 
 void Story::Menu() {
@@ -29,12 +30,95 @@ void Story::Menu() {
     StartGameMenu(io);
 }
 
-void Story::gameCycle(){
-    this->setPlayer(this->playerCreation(this->io));
+void Story::gameCycle(StoryIO io){
+    bool loopCycle = true;
+    do
+    {
+        int plrX = this->player->getLocationX();
+        int plrY = this->player->getLocationY();
+        Room plrRoom = *(this->level->getRoomAt(plrX, plrY));
+        this->level->markRoomExplored(plrX,plrY);
+
+
+
+        io << "Choose an action:" << io.endl;
+        io << "1. View the map." << io.endl;
+        io << "2. Move to a different room." << io.endl;
+        io << "3. Access Inventory." << io.endl;
+
+        int input = io.getDigit(3);
+
+        if (input == 1)
+        {
+            io << this->level->generateMap(plrX, plrY) << io.endl;
+        }
+        if (input == 2)
+        {
+            this->moveMenu(io);
+            int newPosX = this->player->getLocationX();
+            int newPosY = this->player->getLocationY();
+            if(!this->level->isRoomExplored(newPosX,newPosY)){
+                Room* newRoom = this->level->getRoomAt(newPosX, newPosY);
+                if(newRoom->rollEnemySpawn()){
+                    this->attackLoop(&(newRoom->getEnemy()),plrX,plrY);
+                }
+            }
+
+        }
+
+    }while(loopCycle == true);
+}
+
+void Story::moveMenu(StoryIO io){
+    int plrX = this->player->getLocationX();
+    int plrY = this->player->getLocationY();
+    io << "Where would you like to move?" << io.endl;
+    io << this->level->generateMap(plrX,plrY) << io.endl;
+
+    //north
+    if(this->level->isThereRoom(plrX-1,plrY)){
+        io << "1. North" << io.endl;
+    }
+
+    //South
+    if(this->level->isThereRoom(plrX+1,plrY)){
+        io << "2. South" << io.endl;
+    }
+
+    //East
+    if(this->level->isThereRoom(plrX,plrY-1)){
+        io << "3. East" << io.endl;
+    }
+
+    //West
+    if(this->level->isThereRoom(plrX,plrY+1)){
+        io << "4. West" << io.endl;
+    }
+
+    io << "5. Go back" << io.endl;
+
+    int input = io.getDigit(5);
+
+    if(input == 1 && this->level->isThereRoom(plrX-1,plrY)){
+        this->player->movePlayer(plrX-1,plrY);
+    }else if(input == 2 && this->level->isThereRoom(plrX+1,plrY)){
+        this->player->movePlayer(plrX+1,plrY);
+    }else if(input == 3 && this->level->isThereRoom(plrX,plrY-1)){
+        this->player->movePlayer(plrX,plrY-1);
+    }else if(input == 4 && this->level->isThereRoom(plrX,plrY+1)){
+        this->player->movePlayer(plrX,plrY+1);
+    }else if(input == 5){
+        return;
+    }else{
+        io << "Invalid choice! Try again." << io.endl;
+        moveMenu(io);
+    }
+
+
 }
 
 void Story::StartGameMenu(StoryIO io) {
-    io << "Mystery Menagerie" << io.endl;
+    io << this->storyName << io.endl;
     io << "1. New game" << io.endl;
     io << "2. Load game" << io.endl;
     io << "3. Options" << io.endl;
@@ -42,11 +126,16 @@ void Story::StartGameMenu(StoryIO io) {
     int input = io.getDigit(3);
 
     if (input == 1) {
-        this->gameCycle();
+        Player* plr = this->playerCreation(io);
+        int xPos = this->level->getStartRoom().at(0);
+        int yPos = this->level->getStartRoom().at(1);
+        plr->movePlayer(xPos,yPos);
+        this->setPlayer(plr);
+        this->gameCycle(io);
     }
 
     if (input == 2) {
-        io << "Not yet implemented" << io.endl;
+        io << "Not yet implemented" << io.endl << io.endl;
         this->StartGameMenu(io);
         //It would call a function that loads in a game from a previous save (saving this for the end because we might not implement it)
     }
@@ -70,7 +159,7 @@ void Story::OptionsMenu(StoryIO io) {
 
     if (input == 2) {
         io << "You're investigating a monster infested Asylum, but you may've bitten off more than you can chew... \n\
-        Navigate the Asylum and defeat monsters to find out what happened and escape!'"
+        Navigate the Asylum and defeat monsters to find out what happened and escape!'" << io.endl;
     }
 
     if (input == 3) {
@@ -106,12 +195,12 @@ void Story::DifficultyMenu(StoryIO io) {
     }
 }
 
-void::Story::attackLoop(Enemy* enemy, Room* room, StoryIO, io){
+void Story::attackLoop(Enemy* enemy, int lastRoomX, int lastRoomY){
     io << "------------------------------------------" << io.endl;
     io << "You've encountered an enemy!" << io.endl;
     io << "It hisses at you...and its eyes ready to attack!" << io.endl;
 
-    int input = io.getDigit(1);
+    int input = io.getDigit(3);
     do{
         io << "What is your next choice?" << io.endl;
         io << "1. Attack" << io.endl;
@@ -128,10 +217,10 @@ void::Story::attackLoop(Enemy* enemy, Room* room, StoryIO, io){
             }else if (enemy->getHealth() >= 0){
                 io << "Using your equipped weapon, you did " << (player->getWeapon())->getDamage() << " damage to the enemy!" << io.endl;
                 io << "The enemy has " << enemy->getHealth() << " health points left." << io.endl;
-                io << "The enemy damaged you for " << enemy->getbaseDamage() << " points." << io.endl;
+                io << "The enemy damaged you for " << enemy->getBaseDamage() << " points." << io.endl;
                 io << "You have " << player->getHealth() << " health points left." << io.endl;
             }else if(player->getHealth() <= 0){
-                io << "The enemy has killed you with " << enemy->getbaseDamage() << " damage points." << io.endl;
+                io << "The enemy has killed you with " << enemy->getBaseDamage() << " damage points." << io.endl;
                 io << "You perish. Your adventure is done." << io.endl;
                 return;
             }
@@ -141,26 +230,23 @@ void::Story::attackLoop(Enemy* enemy, Room* room, StoryIO, io){
             bool escapeAttempt = (rand() % 100) <= enemy->getEscapeChance();
             if(escapeAttempt == true){
                 io << "You successfully escaped the monster!" << io.endl;
-                player->movePlayer(); //Move player into the previous room
+                player->movePlayer(lastRoomX, lastRoomY); //Move player into the previous room
                 return;
             }
             else{
-                io << "You did failed your escape attempt..." io.endl;
+                io << "You did failed your escape attempt..." << io.endl;
             }
         }else if(input == 3){//use consumable
             //use(player)
             //unsure how to implement player use consumable functionality :(
 
-        }else{// invalid input
-        io << "Invalid input!" << io.endl;
-            continue;
         }
 
-    io << "Exiting attack sequence..." << io.endl;
+    //io << "Exiting attack sequence..." << io.endl;
     }while(enemy->getHealth() > 0 && player->getHealth() > 0);
 }
 
-std::vector<std::vector<Room*>> Story::getRoomsAdjacentToPlayer() {
+/*std::vector<std::vector<Room*>> Story::getRoomsAdjacentToPlayer() {
     std::vector<Room*> adjacentRooms;
     std::vector<Room*> connectedRooms = currentRoom->getConnectRooms();
     int numConnectedRooms = connectedRooms.size();
@@ -171,7 +257,7 @@ std::vector<std::vector<Room*>> Story::getRoomsAdjacentToPlayer() {
         }
     }
     return adjacentRooms;
-}
+}*/
 
 Player* Story::playerCreation(StoryIO io) {
     io << "What is your name?" << io.endl;
