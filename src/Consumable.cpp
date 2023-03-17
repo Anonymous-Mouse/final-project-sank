@@ -7,8 +7,31 @@
 StatusEffect Consumable::getEffect(){
     return this->effect;
 }
+
+std::string Consumable::getEffectString(){
+    switch(this->effect){
+        case StatusEffect::Heal:
+            return "Heal"
+        case StatusEffect::ReduceMaxHealth:
+            return "Reduce Max Health"
+        case StatusEffect::Slow:
+            return "Slow"
+        case StatusEffect::ReduceBaseDamage:
+            return "ReduceBaseDamage"
+    }
+}
+
 UsageType Consumable::getUsage(){
     return this->usage;
+}
+
+std::string Consumable::getUsageString(){
+    switch(this->effect){
+        case UsageType::self:
+            return "Self"
+        case UsageType::enemy:
+            return "Enemy"
+    }
 }
 
 bool Consumable::use(Entity* entity){
@@ -21,5 +44,9 @@ Consumable::Consumable(std::string Name, StatusEffect effect, UsageType usage): 
 }
 
 ItemTypes Consumable::getType(){
-    return ItemTypes::Consumable;
+    return ItemTypes::CONSUMABLE;
+}
+
+ItemTypes Consumable::getTypeString(){
+    return "Consumable";
 }

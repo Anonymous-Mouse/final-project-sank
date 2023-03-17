@@ -18,5 +18,9 @@ bool Item::use(Entity*){
 }
 
 virtual ItemTypes getType(){
-    return ItemTypes::Item;
+    return ItemTypes::ITEM;
+}
+
+std::string Item::getTypeString(){
+    return "Item";
 }

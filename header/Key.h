@@ -12,6 +12,8 @@ class Key: public Item{
         ItemTypes getType() override;
 
         Key(std::string Name);
+
+        std::string getTypeString() override;
 };
 
 #endif

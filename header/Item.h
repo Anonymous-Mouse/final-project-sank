@@ -3,12 +3,13 @@
 
 #include <string>
 #include "./Entity.h"
+#include <string>
 
 enum ItemTypes{
-    Item,
-    Key,
-    Consumable,
-    Weapon
+    ITEM,
+    KEY,
+    CONSUMABLE,
+    WEAPON
 }
 
 class Item{
@@ -20,7 +21,9 @@ class Item{
 
         virtual bool use(Entity*);
         virtual ItemTypes getType();
+        virtual std::string getTypeString();
         Item(std::string Name);
+
 
 };
 
