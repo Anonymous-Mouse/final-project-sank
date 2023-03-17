@@ -29,5 +29,7 @@ public:
     vector<int> getStartRoom();
     bool isRoomExplored(int x, int y);
     void markRoomExplored(int x, int y);
+
+    ~Level();
 };
 #endif
