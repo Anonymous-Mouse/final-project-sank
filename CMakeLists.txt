@@ -38,6 +38,10 @@ add_executable(runAllTests
   ./tests/testContainer.cpp
 
   ./src/Entity.cpp
+  
+  ./tests/roomTests.cpp
+  ./src/Room.cpp
+  ./src/lockedRoom.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)
