@@ -19,6 +19,8 @@ include_directories(
 
 
 add_executable(runAllTests
+  ./src/Level.cpp 
+  ./tests/testLevel.cpp
 
   ./tests/itemTests.cpp
   ./src/Key.cpp
