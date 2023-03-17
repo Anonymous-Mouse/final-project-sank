@@ -65,13 +65,6 @@ This diagram shows a tentative outline of the classes we will use for the projec
   - StoryIO was created to address IO into the story. It is an application of the Single Responsibility principle as it removes the job of user input validation and direct interfacing with cin and cout. It is implemented by replacing cin/cout usage with StoryIO in functions within the story class. StoryIO allows us to use any istream or ostream meaning we can easily switch between testing with stringstreams and production with cin/cout. The smaller class also had much more clear tests for itself.
   - The Dependency Inversion Principle and Liskov substitution principle was applied to the item classes children. Consumable, Weapon, and Key all implement use(entity), which can be called by the story when needed and thus the story does not care what type of item it is. The DIP principle reduced the complexity of the story class, which was expected to take the burden of implementing the usage of items. Furthermore, if we wish to change the implementation of an item, it is easier to rewrite tests and headers than if it were part of a larger class. The Liskov principle in this case means our items are all similar and their usage is predictable.
  
- > ## Final deliverable
- > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
- > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
- 
  ## Screenshots
  > Screenshots of the input/output after running your application
 ![main menu and options](https://user-images.githubusercontent.com/28524112/226000488-6fb1347e-0160-4ec2-87f0-108a3d902de6.png)
