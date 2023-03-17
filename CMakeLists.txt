@@ -48,6 +48,9 @@ add_executable(runAllTests
   ./src/Spider.cpp
   ./src/Zombie.cpp
   ./tests/testEnemy.cpp
+  
+  ./src/Player.cpp
+  ./tests/testPlayerClass.cpp
 
 )
 
