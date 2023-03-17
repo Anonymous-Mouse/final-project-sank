@@ -19,7 +19,7 @@ Story::Story(std::string storyName, Level* level, StoryIO io){
     this->level = level;
     this->io = io;
 }
-=======
+
 #include <iostream>
 #include <string>
 #include <sstream>
