@@ -9,8 +9,13 @@ Container::Container(vector<Item*> contents, string name, int maxItems, string p
     this->contents = contents;
     this->name = name; 
     this->maxItems = maxItems;
-    this->locked = true;
     this->password = password;
+    if(password == "0"){
+        this->locked = false;
+    }else{
+        this->locked = true;
+    }
+
 }
 
 bool Container::isLocked() {

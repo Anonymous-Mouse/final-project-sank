@@ -5,7 +5,7 @@
 using namespace std;
 
 TEST(ContainerTest, IsLockedTest) {
-    vector<Item> contents = {Item("key"), Item("book")};
+    vector<Item*> contents = {new Item("key"), new Item("book")};
     Container container(contents, "chest", 5);
     container.unlock("key");
 
@@ -13,8 +13,8 @@ TEST(ContainerTest, IsLockedTest) {
 }
 
 TEST(ContainerTest, UnlockTest) {
-    vector<Item> contents = {Item("book"), Item("pen")};
-    Container container(contents, "drawer", 3);
+    vector<Item*> contents = {new Item("book"), new Item("pen")};
+    Container container(contents, "drawer", 3, "password");
 
     EXPECT_FALSE(container.unlock("key"));
     EXPECT_TRUE(container.unlock("password"));
@@ -22,21 +22,21 @@ TEST(ContainerTest, UnlockTest) {
 }
 
 TEST(ContainerTest, GetContentsAmountTest) {
-    vector<Item> contents = {Item("book"), Item("pen"), Item("phone")};
+    vector<Item*> contents = {new Item("book"), new Item("pen"), new Item("phone")};
     Container container(contents, "box", 4);
 
     EXPECT_EQ(container.getContentsAmount(), 3);
 }
 
 TEST(ContainerTest, GetItemIndexTest) {
-    vector<Item> contents = {Item("book"), Item("pen"), Item("phone")};
+    vector<Item*> contents = {new Item("book"), new Item("pen"), new Item("phone")};
     Container container(contents, "box", 4);
 
-    EXPECT_EQ(container.getItemIndex(1).getName(), "pen");
+    EXPECT_EQ(container.getItemIndex(1)->getName(), "pen");
 }
 
 TEST(ContainerTest, RemoveItemIndexTest) {
-    vector<Item> contents = {Item("book"), Item("pen"), Item("phone")};
+    vector<Item*> contents = {new Item("book"), new Item("pen"), new Item("phone")};
     Container container(contents, "box", 4);
     container.removeItemIndex(0);
 
@@ -45,22 +45,31 @@ TEST(ContainerTest, RemoveItemIndexTest) {
 
 
 TEST(ContainerTest, GetNameTest) {
-    vector<Item> contents = {Item("book"), Item("pen"), Item("phone")};
+    vector<Item*> contents = {new Item("book"), new Item("pen"), new Item("phone")};
     Container container(contents, "box", 4);
 
     EXPECT_EQ(container.getName(), "box");
 }
 
 TEST(LockedContainerTest, UnlockTest) {
-    LockedContainer container("password");
+    vector<Item*> contents = {new Item("book"), new Item("pen"), new Item("phone")};
+    Container container(contents, "box", 4, "password");
+
+    EXPECT_TRUE(container.isLocked());
 
     EXPECT_FALSE(container.unlock("wrong password"));
+    EXPECT_TRUE(container.isLocked());
+
     EXPECT_TRUE(container.unlock("password"));
     EXPECT_FALSE(container.isLocked());
 }
 
 TEST(LockedContainerTest, IsLockedTest) {
-    LockedContainer container("1234");
+    vector<Item*> contents = {new Item("book"), new Item("pen"), new Item("phone")};
+    Container container(contents, "box", 4, "1234");
+
+    EXPECT_TRUE(container.isLocked());
+
     container.unlock("1234");
 
     EXPECT_FALSE(container.isLocked());

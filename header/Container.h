@@ -15,7 +15,7 @@ private:
     bool locked;
 
 public:
-    Container(vector<Item*> contents, string name, int maxItems, string password);
+    Container(vector<Item*> contents, string name, int maxItems, string password = "0");
     bool isLocked();
     bool unlock(string password);
     int getContentsAmount();
