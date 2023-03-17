@@ -9,6 +9,7 @@
 #include "./StoryIO.h"
 #include "./Room.h"
 
+using namespace std;
 class Story{
     private:
         Level* level;
@@ -25,7 +26,7 @@ class Story{
     public:
         void setPlayer(Player*);
         void start();
-        void attackLoop(Enemy*);
+        void attackLoop(Enemy* enemy, Room* room, StoryIO io);
         std::vector<std::vector<Room*>> getRoomsAdjacentToPlayer();
 
         Story(std::string storyName, Level* level, StoryIO io);

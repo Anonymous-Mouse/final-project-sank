@@ -106,6 +106,60 @@ void Story::DifficultyMenu(StoryIO io) {
     }
 }
 
+void::Story::attackLoop(Enemy* enemy, Room* room, StoryIO, io){
+    io << "------------------------------------------" << io.endl;
+    io << "You've encountered an enemy!" << io.endl;
+    io << "It hisses at you...and its eyes ready to attack!" << io.endl;
+
+    int input = io.getDigit(1);
+    do{
+        io << "What is your next choice?" << io.endl;
+        io << "1. Attack" << io.endl;
+        io << "2. Run Away" << io.endl;
+        io << "3. Use your Consumables" << io.endl;
+        if(input == 1){ //attack
+
+            player->damageEntity(enemy);
+            enemy->damageEntity(player);
+
+            if(enemy->getHealth() <= 0){
+                io << "You killed the enemy with " << (player->getWeapon())->getDamage() << " damage points." << io.endl;
+                io << "You smile in victory." << io.endl;
+            }else if (enemy->getHealth() >= 0){
+                io << "Using your equipped weapon, you did " << (player->getWeapon())->getDamage() << " damage to the enemy!" << io.endl;
+                io << "The enemy has " << enemy->getHealth() << " health points left." << io.endl;
+                io << "The enemy damaged you for " << enemy->getbaseDamage() << " points." << io.endl;
+                io << "You have " << player->getHealth() << " health points left." << io.endl;
+            }else if(player->getHealth() <= 0){
+                io << "The enemy has killed you with " << enemy->getbaseDamage() << " damage points." << io.endl;
+                io << "You perish. Your adventure is done." << io.endl;
+                return;
+            }
+
+        }
+        else if(input == 2){ //run away
+            bool escapeAttempt = (rand() % 100) <= enemy->getEscapeChance();
+            if(escapeAttempt == true){
+                io << "You successfully escaped the monster!" << io.endl;
+                player->movePlayer(); //Move player into the previous room
+                return;
+            }
+            else{
+                io << "You did failed your escape attempt..." io.endl;
+            }
+        }else if(input == 3){//use consumable
+            //use(player)
+            //unsure how to implement player use consumable functionality :(
+
+        }else{// invalid input
+        io << "Invalid input!" << io.endl;
+            continue;
+        }
+
+    io << "Exiting attack sequence..." << io.endl;
+    }while(enemy->getHealth() > 0 && player->getHealth() > 0);
+}
+
 std::vector<std::vector<Room*>> Story::getRoomsAdjacentToPlayer() {
     std::vector<Room*> adjacentRooms;
     std::vector<Room*> connectedRooms = currentRoom->getConnectRooms();
