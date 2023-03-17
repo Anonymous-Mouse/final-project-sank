@@ -6,6 +6,8 @@
 #include "../header/Weapon.h"
 #include "../header/Entity.h"
 #include "../header/Enemy.h"
+#include "../header/Level.h"
+#include "../header/Room.h"
 #include <vector>
 
 using namespace std;
@@ -137,4 +139,14 @@ TEST(PlayerTests, testDamageEntity) {
     MockEnemy* enemy = new MockEnemy("Rat", 100, 10, 1, 1);
     player->damageEntity(enemy);
     EXPECT_EQ(enemy->getHealth(), 75);
+}
+
+TEST(PlayerTests, testMovePlayer) {
+    vector<Item*> contents = {};
+    Container* newContainer = new Container(contents,"inv",5,"ABCD");
+    Player* player = new Player("Nick",100,25,newContainer);
+    //vector<int> location(2);
+    player->movePlayer(2,2);
+    EXPECT_EQ(player->getLocationX(), 2);
+    EXPECT_EQ(player->getLocationY(), 2);
 }

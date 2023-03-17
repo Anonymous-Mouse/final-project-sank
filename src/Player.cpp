@@ -45,3 +45,16 @@ void Player::setWeapon(Weapon* equippedWeapon) {
     this->equippedWeapon = equippedWeapon;
 }
 
+void Player::movePlayer(int x, int y) {
+    location.at(0) = x;
+    location.at(1) = y;
+}
+
+int Player::getLocationX() {
+    return location.at(0);
+}
+
+int Player::getLocationY() {
+    return location.at(1);
+}
+

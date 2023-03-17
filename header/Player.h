@@ -6,6 +6,8 @@
 #include "../header/StatusEffect.h"
 #include "../header/Weapon.h"
 #include "../header/Item.h"
+#include "../header/Consumable.h"
+#include "../header/Level.h"
 #include <string>
 #include <algorithm>
 #include <vector>
@@ -17,7 +19,7 @@ class Player : public Entity {
         Container* inventory;
         int BaseDamage;
         Weapon* equippedWeapon;
-        //location: int[2]
+        vector<int> location;
 
     public:
         Player(string name, int health, int baseDamage, Container* inventory) : Entity(name, health) {
@@ -33,6 +35,9 @@ class Player : public Entity {
         bool removeEffect(StatusEffect effect);
         Weapon* getWeapon();
         void setWeapon(Weapon* equippedWeapon);
+        void movePlayer(int x, int y);
+        int getLocationX();
+        int getLocationY();
 
 };
 
