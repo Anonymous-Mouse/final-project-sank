@@ -36,5 +36,5 @@ ItemTypes Weapon::getType(){
 }
 
 std::string Weapon::getTypeString(){
-    return "Weapon"
+    return "Weapon";
 }
