@@ -19,7 +19,11 @@ class Consumable: public Item{
         StatusEffect getEffect();
         UsageType getUsage();
         ItemTypes getType() override;
-        
+
+        std::string getEffectString();
+        std::string getTypeString() override;
+        std::string getUsageString();
+
         bool use(Entity*) override;
 
         Consumable(std::string Name, StatusEffect effect, UsageType usage);

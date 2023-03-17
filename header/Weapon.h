@@ -22,6 +22,7 @@ class Weapon: public Item{
         ItemTypes getType() override;
         Weapon(std::string Name, int damage, int durability);
     
+        std::string getTypeString() override;
 
 
 };
