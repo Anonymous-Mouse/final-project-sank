@@ -18,42 +18,68 @@ include_directories(
 
 
 
-target_link_libraries(runAllTests gmock gtest gtest_main)
-
-  ./src/Entity.cpp
-  ./src/Enemy.cpp
-  ./src/Rat.cpp
-  ./src/Spider.cpp
-  ./src/Zombie.cpp
-  ./tests/testEnemy.cpp
-
-  ./src/Container.cpp  
-  ./tests/testContainer.cpp
+add_executable(runAllTests
+  ./src/StoryIO.cpp
+  ./tests/testStoryIO.cpp
   
-  ./src/Level.cpp 
-  ./tests/testLevel.cpp
-
   ./tests/itemTests.cpp
   ./src/Key.cpp
   ./src/Weapon.cpp
   ./src/Item.cpp
   ./src/Consumable.cpp
 
+  ./src/Story.cpp
+  
+  ./src/Level.cpp 
+  ./tests/testLevel.cpp
+  
+  ./src/Container.cpp  
+  ./tests/testContainer.cpp
 
-  ./src/StoryIO.cpp
-  ./tests/testStoryIO.cpp
-
+  ./src/Entity.cpp
+  
   ./tests/roomTests.cpp
   ./src/Room.cpp
   ./src/lockedRoom.cpp
+
+  ./src/Enemy.cpp
+  ./src/Rat.cpp
+  ./src/Spider.cpp
+  ./src/Zombie.cpp
+  ./tests/testEnemy.cpp
   
   ./src/Player.cpp
-  ./src/Container.cpp
   ./tests/testPlayer.cpp
 
-  
-  ./tests/testStory.cpp
+)
+
+add_executable(playGame
+  ./src/StoryIO.cpp
+
+  ./src/Key.cpp
+  ./src/Weapon.cpp
+  ./src/Item.cpp
+  ./src/Consumable.cpp
+
   ./src/Story.cpp
+  
+  ./src/Level.cpp 
+
+  ./src/Container.cpp  
+
+  ./src/Entity.cpp
+  
+  ./src/Room.cpp
+  ./src/lockedRoom.cpp
+
+  ./src/Enemy.cpp
+  ./src/Rat.cpp
+  ./src/Spider.cpp
+  ./src/Zombie.cpp
+  
+  ./src/Player.cpp
+
+  ./main.cpp
 
 )
 

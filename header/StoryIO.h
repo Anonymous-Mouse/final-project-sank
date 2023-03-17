@@ -24,6 +24,7 @@ class StoryIO{
 		}
 
         StoryIO(std::istream& input, std::ostream& output);
+        StoryIO(){};
 
 };
 
