@@ -17,7 +17,7 @@ std::string Consumable::getEffectString(){
         case StatusEffect::Slow:
             return "Slow";
         case StatusEffect::ReduceBaseDamage:
-            return "ReduceBaseDamage";
+            return "Reduce Base Damage";
     }
 }
 
@@ -26,7 +26,7 @@ UsageType Consumable::getUsage(){
 }
 
 std::string Consumable::getUsageString(){
-    switch(this->effect){
+    switch(this->usage){
         case UsageType::self:
             return "Self";
         case UsageType::enemy:
