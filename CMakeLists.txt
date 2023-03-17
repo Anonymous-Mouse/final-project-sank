@@ -27,7 +27,11 @@ add_executable(runAllTests
   ./src/Container.cpp
   ./src/Item.cpp
   ./src/Weapon.cpp
-  ./tests/testPlayerClass.cpp
+  ./tests/testPlayer.cpp
+  ./src/Room.cpp
+  ./tests/testStory.cpp
+  ./src/Story.cpp
+  ./src/Consumable.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)
