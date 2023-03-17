@@ -14,6 +14,8 @@ class Key: public Item{
         Key(std::string Name);
 
         std::string getTypeString() override;
+
+        std::string getDescription() override;
 };
 
 #endif

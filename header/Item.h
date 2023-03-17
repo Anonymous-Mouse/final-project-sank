@@ -10,7 +10,7 @@ enum ItemTypes{
     KEY,
     CONSUMABLE,
     WEAPON
-}
+};
 
 class Item{
     private:
@@ -24,6 +24,7 @@ class Item{
         virtual std::string getTypeString();
         Item(std::string Name);
 
+        virtual std::string getDescription();
 
 };
 

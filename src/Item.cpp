@@ -17,10 +17,14 @@ bool Item::use(Entity*){
     return false;
 }
 
-virtual ItemTypes getType(){
+ItemTypes Item::getType(){
     return ItemTypes::ITEM;
 }
 
 std::string Item::getTypeString(){
     return "Item";
 }
+
+std::string Item::getDescription(){
+    return getTypeString() + " - Name: "+getName();
+ }

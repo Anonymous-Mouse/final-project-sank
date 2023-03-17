@@ -24,6 +24,9 @@ class Weapon: public Item{
     
         std::string getTypeString() override;
 
+        std::string Item::getDescription(){
+            return getTypeString() + " - Name: " + getName() + " - Damage:  " + this->getDamage() + " - Durability: " + this->getDurability();
+        }
 
 };
 

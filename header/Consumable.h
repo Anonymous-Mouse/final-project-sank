@@ -26,6 +26,8 @@ class Consumable: public Item{
 
         bool use(Entity*) override;
 
+        std::string getDescription() override;
+
         Consumable(std::string Name, StatusEffect effect, UsageType usage);
 };
 
