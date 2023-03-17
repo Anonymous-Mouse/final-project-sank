@@ -20,6 +20,7 @@ class Story{
         void OptionsMenu(StoryIO);
         void DifficultyMenu(StoryIO);
         void playerCreation(StoryIO);
+        void gameCycle();
         
     public:
         void setPlayer(Player*);

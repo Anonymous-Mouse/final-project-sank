@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include <string>
 #include <vector>
 #include <sstream>
@@ -20,12 +18,19 @@ Story::Story(std::string storyName, Level* level, StoryIO io){
     this->io = io;
 }
 
+void Story::start(){
+    this->StartGameMenu(this->io)
+}
 
 void Story::Menu() {
     std::ostringstream ostr;
     std::istringstream istr;
     StoryIO io(istr, ostr);
     StartGameMenu(io);
+}
+
+void Story::gameCycle(){
+    this->setPlayer(this->playerCreation(this->io));
 }
 
 void Story::StartGameMenu(StoryIO io) {
@@ -37,10 +42,12 @@ void Story::StartGameMenu(StoryIO io) {
     int input = io.getDigit(3);
 
     if (input == 1) {
-        //It would call a function to start a new game
+        this->gameCycle();
     }
 
     if (input == 2) {
+        io << "Not yet implemented" << io.endl;
+        this->StartGameMenu(io);
         //It would call a function that loads in a game from a previous save (saving this for the end because we might not implement it)
     }
 
@@ -82,15 +89,15 @@ void Story::DifficultyMenu(StoryIO io) {
     int input = io.getDigit(4);
 
     if (input == 1) {
-        //calls function to change difficulty accordingly
+        this->level->setDifficulty(1);
     }
 
     if (input == 2) {
-        //calls function to change difficulty accordingly
+        this->level->setDifficulty(2);
     }
 
     if (input == 3) {
-        //calls function to change difficulty accordingly
+        this->level->setDifficulty(3);
     }
 
     if (input == 4) {
@@ -112,7 +119,7 @@ std::vector<std::vector<Room*>> Story::getRoomsAdjacentToPlayer() {
     return adjacentRooms;
 }
 
-void Story::playerCreation(StoryIO io) {
+Player* Story::playerCreation(StoryIO io) {
     io << "What is your name?" << io.endl;
 
     string name = io.getString();
@@ -125,23 +132,22 @@ void Story::playerCreation(StoryIO io) {
     int input = io.getDigit(3);
 
     if (input == 1) { //creates a Player object named Officer
-        Weapon* gun = new Weapon("gun",35,30);
+        Weapon* gun = new Weapon("Gun",35,30);
         vector<Item*> contents = {gun};
-        Container* newContainer = new Container(contents, "Inventory", 4, "123");
+        Container* newContainer = new Container(contents, "Inventory", 4);
         Player* Officer = new Player(name, 100, 25, newContainer);
-    }
-
-    if (input == 2) { //creates a Player objcet named Scavenger
-        Weapon* crowbar = new Weapon("crowbar",25,15);
+        return Officer;
+    }else if (input == 2) { //creates a Player objcet named Scavenger
+        Weapon* crowbar = new Weapon("Crowbar",25,15);
         vector<Item*> contents = {crowbar};
-        Container* newContainer = new Container(contents, "Inventory", 6, "123");
+        Container* newContainer = new Container(contents, "Inventory", 6);
         Player* Scavenger = new Player(name, 100, 20, newContainer);
-    }
-
-    if (input == 3) { //creates a Plaer object named EMT
-        Consumable* medkit = new Consumable("medkit", Heal, self);
+        return Scavenger;
+    }else if (input == 3) { //creates a Plaer object named EMT
+        Consumable* medkit = new Consumable("Medkit", Heal, self);
         vector<Item*> contents = {medkit};
-        Container* newContainer = new Container(contents, "Inventory", 5, "123");
+        Container* newContainer = new Container(contents, "Inventory", 5);
         Player* EMT = new Player(name, 100, 15, newContainer);
+        return EMT;
     }
 }
