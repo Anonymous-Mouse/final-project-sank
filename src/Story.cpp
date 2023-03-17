@@ -29,13 +29,12 @@ Story::Story(std::string storyName, Level* level, StoryIO io){
 //#include "../header/Weapon.h"
 //#include "../header/Container.h"
 #include <vector>
->>>>>>> njohn066/Player
+
 
 void Story::Menu() {
     std::ostringstream ostr;
     std::istringstream istr;
     StoryIO io(istr, ostr);
-<<<<<<< HEAD
     StartGameMenu(io);
 }
 
