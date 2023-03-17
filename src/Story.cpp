@@ -20,16 +20,6 @@ Story::Story(std::string storyName, Level* level, StoryIO io){
     this->io = io;
 }
 
-#include <iostream>
-#include <string>
-#include <sstream>
-#include "../header/Story.h"
-#include "../header/StoryIO.h"
-#include "../header/Player.h"
-//#include "../header/Weapon.h"
-//#include "../header/Container.h"
-#include <vector>
-
 
 void Story::Menu() {
     std::ostringstream ostr;
