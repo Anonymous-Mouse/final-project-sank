@@ -74,9 +74,26 @@ This diagram shows a tentative outline of the classes we will use for the projec
  
  ## Screenshots
  > Screenshots of the input/output after running your application
+![main menu and options](https://user-images.githubusercontent.com/28524112/226000488-6fb1347e-0160-4ec2-87f0-108a3d902de6.png)
+![Enter your name and choose your class](https://user-images.githubusercontent.com/28524112/226000429-4651113f-881d-4734-958d-47e7d764892e.png)
+![fight enemies that may or may not be present next game](https://user-images.githubusercontent.com/28524112/226000465-64e3d797-24fc-4d35-b320-07dc17a3f63e.png)
+![![view inventory and equip new weapons](https://user-images.githubusercontent.com/28524112/226000499-b5a6ad99-6667-42b0-8d9b-a6434f5f6da7.png)
+minimap to track your progress, 4 way movement](https://user-images.githubusercontent.com/28524112/226000494-663d2332-c0b5-484d-8484-98bfe0d3ad77.png)
+
  ## Installation/Usage
- > Instructions on installing and running your application
+ 1. To install you must first install g++ and CMake.
+     1. A guide for CMake can be found [here](https://cmake.org/install/) and for g++ [here](https://www.freecodecamp.org/news/how-to-install-c-and-cpp-compiler-on-windows/)
+ 2. To download the source code to build and run the program, you may use the git command line and run `git clone --recursive https://github.com/cs100/final-project-sank` or click the big green `<> Code` button and "Download Zip".
+     1. A guide and links to install git can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+     2. If you choose to Download as Zip, unzip the archive before proceeding.
+     3. Additionally, you must run `git submodule init` then `git submodule update` inside the folder.
+ 3. Open your Terminal and navigate inside the folder using `cd ./final-project-sank`
+ 4. Run `cmake .`
+ 5. Run `make`
+ 6. The program executable can be ran by running `./bin/playGame` inside the folder.
+     1. The ingame menu and prompts should be able to guide you from there. Enjoy!
+ 
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+We did not use CI for this project as we were told the CS100 github org doesn't have enough minutes for everyone. Instead, we had everyone run tests locally before pushing to their branches as well as running tests after merging branches. The testing framework used was GoogleTest. Along with GoogleTet, Valgrind was used to verify we didn't have any memory leaks.
 
 
