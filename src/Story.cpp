@@ -76,19 +76,8 @@ void Story::inventoryMenu(StoryIO io){
     io << "Your inventory: " << player->getInventory()->getContentsAmount() << "/" << player->getInventory()->getMaxItems() << io.endl;
     for(int i = 0; i<player->getInventory()->getContentsAmount(); ++i){
         Item* item = player->getInventory()->getItemIndex(i);
-        io << "[" << i << "] "
-        switch(item->getType()){
-            case ItemTypes::KEY:
-                io << "Key: " << item->getName() << io.endl;
-                break;
-            case ItemTypes::WEAPONS:
-                io << "Weapon: " << item->getName() << " Damage: " << item<-getDamage <<" Durability: " <<  item<-getDurability << io.endl;
-                break;
-            case ItemTypes::CONSUMABLE:
-                io << "Weapon: " << item->getName() << " Damage: " << item<-getDamage <<" Durability: " <<  item<-getDurability << io.endl;
-                break;
-        }
-         << io.endl;
+        io << "[" << i << "] " << item->getDescription();
+        io << io.endl;
     }
 }
 
