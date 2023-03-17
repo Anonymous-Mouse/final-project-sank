@@ -37,30 +37,33 @@ Description:
 - ### Access their inventory
   - The player can access their inventory to drop items, upgrade items, or see what they have collected so far.
 
-## Class Diagram
-![UML Diagram drawio 2-22-23](https://user-images.githubusercontent.com/28524112/220846269-4911dc6f-45c5-4d6e-9e45-9add6873961f.png)
-This diagram shows a tentative outline of the classes we will use for the project. A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms. The level will hold all the Rooms and keep track of the rooms the player has been in as well as the difficulty of the story. A room can have an entity, container, or both. The story should not allow the container to be opened or the player to move to different room unless the enemy is dead or is not there. A locked room cannot be entered without the correct key in the inventory, once entered the key is consumed and the lockedroom is marked unlocked. Rooms can have a chance to spawn an enemy when first explored (to add randomness). The room map is a 2d array, to represent x and y coordinates. Weapons and enemies should be defined per story, Giant_Spider is just an example. The player will have an inventory, made up of a container class, which should be created before the player is made as should all part classes in the diagram (ex. Level, player, rooms). Some effects should be added to the effects array in the entities class when used, specifically ReduceMaxHealth, ReduceBaseDamage, and Slow, but others like Heal should not as healing does not have a lasting effect. Items can be consumables, weapons, or keys. Some consumables, like keys will be of usageType “self”, meaning they can only applied to the player. Others, of usageType “enemy” are only used on enemies. Weapons will have unique durability and damage, durability is lowered 1 every attack. 
- 
- > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
- 
- > BEFORE the meeting you should do the following:
- > * Update your class diagram from Phase II to include any feedback you received from your TA/grader.
- > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
- >   * A new class diagram incorporating your changes after considering the SOLID principles.
- >   * For each update in your class diagram, you must explain in 3-4 sentences:
- >     * What SOLID principle(s) did you apply?
- >     * How did you apply it? i.e. describe the change.
- >     * How did this change help you write better code?
- > * Perform a new sprint plan like you did in Phase II.
- > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
- 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
 
+
+
+## Class Diagram
+![UML Diagram drawio 3-17png](https://user-images.githubusercontent.com/28524112/226045908-04b9d696-48f7-45be-a3ce-a8a8caf4bdda.png)
+This diagram shows a tentative outline of the classes we will use for the project. 
+ - A story class will essentially be the top most class in our project, and will be responsible for prompting the user during attack cycles and other interactions. 
+   - The story class will also have helper functions, such as the getRoomsAdjacentToPlayer, which returns x,y coordinates of the rooms.
+   - The story class will make use of StoryIO, an abstraction for input/output which provides input validation and can take any istream or ostream as parameters. (cin, cout, isstream, osstream)
+ - The level will hold all the Rooms and keep track of the rooms the player has been in as well as the difficulty of the story. 
+ - A room can have an entity, container, or both. 
+   - The story should not allow the container to be opened or the player to move to different room unless the enemy is dead or is not there. 
+   - A locked room cannot be entered without the correct key in the inventory, once entered the key is consumed and the lockedroom is marked unlocked. 
+   - Rooms can have a chance to spawn an enemy when first explored (to add randomness). 
+   - The room map is a 2d array, to represent x and y coordinates. 
+ - Weapons and enemies should be defined per story, Giant_Spider is just an example. 
+ - The player will have an inventory, made up of a container class, which should be created before the player is made as should all part classes in the diagram (ex. Level, player, rooms). 
+ - Some effects should be added to the effects array in the entities class when used, specifically ReduceMaxHealth, ReduceBaseDamage, and Slow, but others like Heal should not as healing does not have a lasting effect.
+ - Items can be consumables, weapons, or keys. Some consumables will be of usageType “self”, meaning they can only applied to the player. 
+   - Others, of usageType “enemy” are only used on enemies. Weapons will have unique durability and damage, durability is lowered 1 every attack. 
+   - Keys should be used only when when the user interacts with a locked door or container.
+
+   
+
+- UML SOLID Updates
+  - StoryIO was created to address IO into the story. It is an application of the Single Responsibility principle as it removes the job of user input validation and direct interfacing with cin and cout. It is implemented by replacing cin/cout usage with StoryIO in functions within the story class. StoryIO allows us to use any istream or ostream meaning we can easily switch between testing with stringstreams and production with cin/cout. The smaller class also had much more clear tests for itself.
+  - The Dependency Inversion Principle and Liskov substitution principle was applied to the item classes children. Consumable, Weapon, and Key all implement use(entity), which can be called by the story when needed and thus the story does not care what type of item it is. The DIP principle reduced the complexity of the story class, which was expected to take the burden of implementing the usage of items. Furthermore, if we wish to change the implementation of an item, it is easier to rewrite tests and headers than if it were part of a larger class. The Liskov principle in this case means our items are all similar and their usage is predictable.
  
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
@@ -71,8 +74,26 @@ This diagram shows a tentative outline of the classes we will use for the projec
  
  ## Screenshots
  > Screenshots of the input/output after running your application
+![main menu and options](https://user-images.githubusercontent.com/28524112/226000488-6fb1347e-0160-4ec2-87f0-108a3d902de6.png)
+![Enter your name and choose your class](https://user-images.githubusercontent.com/28524112/226000429-4651113f-881d-4734-958d-47e7d764892e.png)
+![fight enemies that may or may not be present next game](https://user-images.githubusercontent.com/28524112/226000465-64e3d797-24fc-4d35-b320-07dc17a3f63e.png)
+![![view inventory and equip new weapons](https://user-images.githubusercontent.com/28524112/226000499-b5a6ad99-6667-42b0-8d9b-a6434f5f6da7.png)
+minimap to track your progress, 4 way movement](https://user-images.githubusercontent.com/28524112/226000494-663d2332-c0b5-484d-8484-98bfe0d3ad77.png)
+
  ## Installation/Usage
- > Instructions on installing and running your application
+ 1. To install you must first install g++ and CMake.
+     1. A guide for CMake can be found [here](https://cmake.org/install/) and for g++ [here](https://www.freecodecamp.org/news/how-to-install-c-and-cpp-compiler-on-windows/)
+ 2. To download the source code to build and run the program, you may use the git command line and run `git clone --recursive https://github.com/cs100/final-project-sank` or click the big green `<> Code` button and "Download Zip".
+     1. A guide and links to install git can be found [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+     2. If you choose to Download as Zip, unzip the archive before proceeding.
+     3. Additionally, you must run `git submodule init` then `git submodule update` inside the folder.
+ 3. Open your Terminal and navigate inside the folder using `cd ./final-project-sank`
+ 4. Run `cmake .`
+ 5. Run `make`
+ 6. The program executable can be ran by running `./bin/playGame` inside the folder.
+     1. The ingame menu and prompts should be able to guide you from there. Enjoy!
+ 
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+We did not use CI for this project as we were told the CS100 github org doesn't have enough minutes for everyone. Instead, we had everyone run tests locally before pushing to their branches as well as running tests after merging branches. The testing framework used was GoogleTest. Along with GoogleTet, Valgrind was used to verify we didn't have any memory leaks.
+
 
